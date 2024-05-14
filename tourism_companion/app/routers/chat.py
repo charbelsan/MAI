@@ -91,10 +91,14 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     translation = translate_text(transcription, language, request.target_lang)
     
     # Use RAG for context-based querying
-    rag_response = rag_query(index, texts, transcription)
+     rag_response = rag_query(compression_retriever, transcription, use_rag=use_rag)  #config file option 
     
-    # Integrate the pre-prompt
-    prompt = f"{pre_prompt}\n\nUser: {translation}\n\nContext:\n{rag_response}\nAI:"
+    # Adapt the prompt based on whether RAG was used
+    if rag_response:
+        prompt = f"{pre_prompt}\n\nUser: {translation}\n\nContext:\n{rag_response}\nAI:"
+    else:
+        prompt = f"{pre_prompt}\n\nUser: {translation}\nAI:"
+
     response = gpt4_model(prompt).choices[0].text.strip()
 
     # Add to conversation memory and store messages
