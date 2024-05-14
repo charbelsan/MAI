@@ -91,7 +91,7 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     translation = translate_text(transcription, language, request.target_lang)
     
     # Use RAG for context-based querying
-     rag_response = rag_query(compression_retriever, transcription, use_rag=use_rag)  #config file option 
+    rag_response = rag_query(compression_retriever, transcription, use_rag=use_rag)  #config file option 
     
     # Adapt the prompt based on whether RAG was used
     if rag_response:

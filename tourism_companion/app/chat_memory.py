@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from langchain.memory import ConversationBufferMemory
+from langchain.chains.conversation.memory import ConversationBufferMemory
 from app.models import Message
 
 # Initialize a dictionary to store conversation memory for different sessions
