@@ -10,4 +10,5 @@ pydantic
 whisper
 pdfplumber
 faiss-cpu
-langchain
+langchain==0.1.20
+langchain-openai

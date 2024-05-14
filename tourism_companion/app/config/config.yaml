@@ -1,0 +1,16 @@
+system:
+  language: yo
+
+models:
+  gpt4_text: text-davinci-003
+  whisper: base
+  asr: chrisjay/fonxlsr
+  tts: facebook/mms-tts-fon
+  gpt4_chat: gpt-4o
+  nllb: facebook/nllb-200-distilled-600M
+
+transcription:
+  type: whisper
+
+translation:
+  type: google
