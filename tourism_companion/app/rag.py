@@ -1,34 +1,43 @@
 import os
-import faiss
-import numpy as np
-from langchain.document_loaders import SimpleDirectoryReader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain_community.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.retrievers.document_compressors import LLMChainFilter, ContextualCompressionRetriever
+from langchain.llms import OpenAI
 
-# Load documents from a directory containing PDFs
-def load_documents(directory: str):
-    return SimpleDirectoryReader(directory).load()
+def pretty_print_docs(docs):
+    print(
+        f"\n{'-' * 100}\n".join(
+            [f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]
+        )
+    )
 
-# Create an index for the documents using FAISS
-def create_index(documents):
-    text_splitter = RecursiveCharacterTextSplitter()
+def load_documents(directory_path):
+    """Load documents from a directory, converting PDFs and .txt files to text."""
+    loader = DirectoryLoader(directory_path, glob="**/*.pdf")
+    documents = loader.load()
+    return documents
+
+def create_retriever(documents):
+    """Create a FAISS retriever from the documents."""
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     texts = text_splitter.split_documents(documents)
+    retriever = FAISS.from_documents(texts, OpenAIEmbeddings()).as_retriever()
+    return retriever
 
-    embeddings = OpenAIEmbeddings()
-    vectors = [embeddings.embed(document.content) for document in texts]
+def create_compression_retriever(retriever, llm):
+    """Create a ContextualCompressionRetriever using LLMChainFilter."""
+    _filter = LLMChainFilter.from_llm(llm)
+    compression_retriever = ContextualCompressionRetriever(
+        base_compressor=_filter, base_retriever=retriever
+    )
+    return compression_retriever
 
-    dim = len(vectors[0])
-    index = faiss.IndexFlatL2(dim)
-    index.add(np.array(vectors).astype(np.float32))
-
-    return index, texts
-
-# Perform a RAG query
-def rag_query(index, texts, query: str):
-    embeddings = OpenAIEmbeddings()
-    query_vector = embeddings.embed(query).astype(np.float32).reshape(1, -1)
-
-    _, indices = index.search(query_vector, k=5)
-    results = [texts[i[0]].content for i in indices]
-
-    return "\n".join(results)
+def rag_query(retriever, query, use_rag=True):
+    """Query the retriever using RAG (Retrieval-Augmented Generation)."""
+    if not use_rag:
+        return None
+    docs = retriever.invoke(query)
+    pretty_print_docs(docs)
+    return docs
