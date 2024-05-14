@@ -1,48 +1,27 @@
-
-import __init__
-from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
+from fastapi import APIRouter, UploadFile, File, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from app.schemas import ChatRequest, ChatResponse
 from app.services.language_detection import detect_language
-from app.services.transcription import WhisperInference, ASRInference, TTSInference
-from app.services.translation import NLLBInference, GPTInference
 from app.services.image_description import describe_image
 from app.services.gps_detection import requires_gps
 from app.deps import get_db
 from app.utils.helpers import start_or_get_session, store_message
 from app.chat_memory import get_conversation_memory
-# from app.rag import load_documents, create_index, rag_query
-# from app.chains import search_nearby
-# from app.agent import tourism_agent
-# from langchain.llms import OpenAI
-from langchain_community.llms import OpenAI
-import yaml
+from app.rag import load_documents, create_index, rag_query
+from app.pipelines import Pipeline
+from langchain.llms import OpenAI
 import os
-
-# Get the current file path
-app_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-config_file = f'{app_path}/config/config.yaml'
-
-# Load the YAML file
-with open(config_file, 'r') as file:
-    config = yaml.safe_load(file)
+import base64
+import tempfile
 
 router = APIRouter()
-
-# Initialize Pipeline
-pipe = Pipeline(config_file)
-
-# Initialize OpenAI GPT-4
-gpt4_text = OpenAI(model_name=config['models']['gpt4_text'])
-whisper = WhisperInference(model_name=config['models']['whisper'])
-asr = ASRInference(model_name=config['models']['asr'])
-tts = TTSInference(model_name=config['models']['tts'])
-gpt4_chat = GPTInference(model_name=config['models']['gpt4_chat'])
-nllb = NLLBInference(model_name=config['models']['nllb'])
 
 # Load documents and create an index for RAG
 documents = load_documents("path_to_your_pdf_directory")
 index, texts = create_index(documents)
+
+# Initialize OpenAI GPT-4
+gpt4_model = OpenAI(model_name="text-davinci-003")
 
 # Define the pre-prompt
 pre_prompt = """
@@ -66,6 +45,10 @@ Please adhere to the following guidelines:
 Your goal is to be helpful, polite, and informative, enhancing the user's travel experience. Always prioritize the user's safety and well-being.
 """
 
+# Load pipeline configurations
+config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config/config.yaml")
+pipeline = Pipeline(config_file=config_file)  # Initialize the pipeline once
+
 @router.post("/chat/", response_model=ChatResponse)
 async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     """
@@ -84,7 +67,7 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     transcription = ""
     language = ""
     if request.text:
-        # language = detect_language(request.text)
+        language = detect_language(request.text)
         transcription = request.text
         
         # Check if the prompt requires GPS-based information
@@ -96,10 +79,10 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
             return {"response": response, "session_id": session_id}
     elif request.file:
         file_bytes = await request.file.read()
-        # language = detect_language(file_bytes)
-        # transcription = transcribe_audio(file_bytes, language)
-        transcription = whisper.inference(file_bytes)
-        print("Transcription from Audio - Whisper : ", transcription)
+        language = detect_language(file_bytes)
+        if language not in ["yo", "fon"]:
+            raise HTTPException(status_code=400, detail="Unsupported language for audio file.")
+        transcription = pipeline.pipeline_att(audio_file=file_bytes, language=language)
     elif request.image:
         image_bytes = await request.image.read()
         transcription = describe_image(image_bytes)
@@ -110,18 +93,13 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     else:
         raise HTTPException(status_code=400, detail="No valid input provided")
 
-    # translation = translate_text(transcription, language, request.target_lang)
-    translation = gpt4o.inference(transcription, src_lang=request.target_lang, target_lang="fr")
+    translation = pipeline.gpt4_chat.inference(transcription, src_lang=language, target_lang=request.target_lang)
     
     # Use RAG for context-based querying
-    rag_response = rag_query(compression_retriever, transcription, use_rag=use_rag)  #config file option 
+    rag_response = rag_query(index, texts, transcription)
     
-    # Adapt the prompt based on whether RAG was used
-    if rag_response:
-        prompt = f"{pre_prompt}\n\nUser: {translation}\n\nContext:\n{rag_response}\nAI:"
-    else:
-        prompt = f"{pre_prompt}\n\nUser: {translation}\nAI:"
-
+    # Integrate the pre-prompt
+    prompt = f"{pre_prompt}\n\nUser: {translation}\n\nContext:\n{rag_response}\nAI:"
     response = gpt4_model(prompt).choices[0].text.strip()
 
     # Add to conversation memory and store messages
@@ -131,3 +109,68 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     store_message(db, session_id, 'ai', response)
 
     return {"response": response, "session_id": session_id}
+
+@router.post("/api/speechToText")
+async def speech_to_text(request: Request):
+    """
+    Convert speech (audio file) to text.
+
+    Args:
+        request (Request): The request payload containing the audio file in base64 and input language.
+
+    Returns:
+        JSON response containing the transcribed text.
+    """
+    data = await request.json()
+    audio_base64 = data.get("audio")
+    input_lang = data.get("inputLang")
+
+    if not audio_base64 or not input_lang:
+        raise HTTPException(status_code=400, detail="Audio file and input language are required")
+
+    # Decode base64 audio file
+    audio_bytes = base64.b64decode(audio_base64)
+    
+    # Save to a temporary file
+    with tempfile.NamedTemporaryFile(delete=False) as temp_audio_file:
+        temp_audio_file.write(audio_bytes)
+        temp_audio_file_path = temp_audio_file.name
+    
+    # Perform transcription
+    transcription = pipeline.pipeline_att(audio_file=temp_audio_file_path, language=input_lang)
+    
+    # Clean up temporary file
+    os.remove(temp_audio_file_path)
+    
+    return {"text": transcription}
+
+@router.post("/api/textToSpeech")
+async def text_to_speech(request: Request):
+    """
+    Convert text to speech (audio file).
+
+    Args:
+        request (Request): The request payload containing the text and input/output languages.
+
+    Returns:
+        JSON response containing the base64 encoded audio file.
+    """
+    data = await request.json()
+    text = data.get("text")
+    input_lang = data.get("inputLang")
+    output_lang = data.get("outputLang")
+
+    if not text or not input_lang or not output_lang:
+        raise HTTPException(status_code=400, detail="Text, input language, and output language are required")
+
+    # Perform text-to-speech conversion
+    audio_array, audio_file_path = pipeline.pipeline_ta(text=text, language=input_lang)
+    
+    # Read the audio file and encode to base64
+    with open(audio_file_path, "rb") as audio_file:
+        audio_base64 = base64.b64encode(audio_file.read()).decode("utf-8")
+    
+    # Clean up temporary file
+    os.remove(audio_file_path)
+    
+    return {"audio": audio_base64}
