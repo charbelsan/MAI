@@ -1,27 +1,48 @@
+
+import __init__
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.schemas import ChatRequest, ChatResponse
 from app.services.language_detection import detect_language
-from app.services.transcription import transcribe_audio
-from app.services.translation import translate_text
+from app.services.transcription import WhisperInference, ASRInference, TTSInference
+from app.services.translation import NLLBInference, GPTInference
 from app.services.image_description import describe_image
 from app.services.gps_detection import requires_gps
 from app.deps import get_db
 from app.utils.helpers import start_or_get_session, store_message
 from app.chat_memory import get_conversation_memory
-from app.rag import load_documents, create_index, rag_query
-from app.chains import search_nearby
-from app.agent import tourism_agent
-from langchain.llms import OpenAI
+# from app.rag import load_documents, create_index, rag_query
+# from app.chains import search_nearby
+# from app.agent import tourism_agent
+# from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
+import yaml
+import os
+
+# Get the current file path
+app_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+config_file = f'{app_path}/config/config.yaml'
+
+# Load the YAML file
+with open(config_file, 'r') as file:
+    config = yaml.safe_load(file)
 
 router = APIRouter()
+
+# Initialize Pipeline
+pipe = Pipeline(config_file)
+
+# Initialize OpenAI GPT-4
+gpt4_text = OpenAI(model_name=config['models']['gpt4_text'])
+whisper = WhisperInference(model_name=config['models']['whisper'])
+asr = ASRInference(model_name=config['models']['asr'])
+tts = TTSInference(model_name=config['models']['tts'])
+gpt4_chat = GPTInference(model_name=config['models']['gpt4_chat'])
+nllb = NLLBInference(model_name=config['models']['nllb'])
 
 # Load documents and create an index for RAG
 documents = load_documents("path_to_your_pdf_directory")
 index, texts = create_index(documents)
-
-# Initialize OpenAI GPT-4
-gpt4_model = OpenAI(model_name="text-davinci-003")
 
 # Define the pre-prompt
 pre_prompt = """
@@ -63,7 +84,7 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     transcription = ""
     language = ""
     if request.text:
-        language = detect_language(request.text)
+        # language = detect_language(request.text)
         transcription = request.text
         
         # Check if the prompt requires GPS-based information
@@ -75,8 +96,10 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
             return {"response": response, "session_id": session_id}
     elif request.file:
         file_bytes = await request.file.read()
-        language = detect_language(file_bytes)
-        transcription = transcribe_audio(file_bytes, language)
+        # language = detect_language(file_bytes)
+        # transcription = transcribe_audio(file_bytes, language)
+        transcription = whisper.inference(file_bytes)
+        print("Transcription from Audio - Whisper : ", transcription)
     elif request.image:
         image_bytes = await request.image.read()
         transcription = describe_image(image_bytes)
@@ -91,14 +114,15 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     else:
         raise HTTPException(status_code=400, detail="No valid input provided")
 
-    translation = translate_text(transcription, language, request.target_lang)
+    # translation = translate_text(transcription, language, request.target_lang)
+    translation = gpt4o.inference(transcription, src_lang=request.target_lang, target_lang="fr")
     
     # Use RAG for context-based querying
     rag_response = rag_query(index, texts, transcription)
     
     # Integrate the pre-prompt
     prompt = f"{pre_prompt}\n\nUser: {translation}\n\nContext:\n{rag_response}\nAI:"
-    response = gpt4_model(prompt).choices[0].text.strip()
+    response = gpt4_text(prompt).choices[0].text.strip()
 
     # Add to conversation memory and store messages
     conversation_memory.add_user_input(transcription)
