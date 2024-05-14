@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pycld2
+langid
+openai
+transformers
+torch
+sqlalchemy
+pydantic
+whisper
+pdfplumber
+faiss-cpu
+langchain
