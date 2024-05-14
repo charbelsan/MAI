@@ -9,7 +9,8 @@ from app.services.gps_detection import requires_gps
 from app.deps import get_db
 from app.utils.helpers import start_or_get_session, store_message
 from app.chat_memory import get_conversation_memory
-from app.rag import load_documents, create_index, rag_query
+from app.rag import load_documents, create_retriever, create_compression_retriever, rag_query
+from app.chains import search_nearby
 from app.chains import search_nearby
 from app.agent import tourism_agent
 from langchain.llms import OpenAI
@@ -83,10 +84,6 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     elif request.gps_position and request.place_type:
         # Handle GPS-based search
         response = search_nearby(request.gps_position, request.place_type)
-        return {"response": response, "session_id": session_id}
-    elif request.query:
-        # Handle web search query
-        response = tourism_agent.run(request.query)
         return {"response": response, "session_id": session_id}
     else:
         raise HTTPException(status_code=400, detail="No valid input provided")

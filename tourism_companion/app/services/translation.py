@@ -1,12 +1,23 @@
 from langchain.llms import OpenAI
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+import os
+
+# Ensure the environment variables are loaded
+from dotenv import load_dotenv
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+
+# Get the API key from the environment variable
+openai_api_key = os.getenv('OPENAI_API_KEY')
+
+if not openai_api_key:
+    raise ValueError("OPENAI_API_KEY environment variable not set")
 
 # Set up OpenAI GPT-4
-gpt4_model = OpenAI(model_name="gpt-4")
+gpt4_model = OpenAI(model_name="gpt-4o", api_key=openai_api_key)
 
-# Initialize models for Fon translation
-nllb_model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M")
-nllb_tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
+# # Initialize models for Fon translation
+# nllb_model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M")
+# nllb_tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
 
 def translate_text(text: str, source_lang: str, target_lang: str) -> str:
     if source_lang == "yo":

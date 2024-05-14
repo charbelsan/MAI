@@ -1,0 +1,21 @@
+name: tourism-companion-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - fastapi=0.68.2
+  - uvicorn=0.15.0
+  - sqlalchemy=1.4.23
+  - pydantic=1.8.2
+  - requests=2.26.0
+  - pip
+  - pip:
+    - openai==0.10.2
+    - transformers==4.10.2
+    - torch
+    - langchain==0.0.61
+    - pdfplumber==0.5.28
+    - faiss-cpu==1.7.1
+    - whisper==1.1.0
+    - python-dotenv==0.19.1
