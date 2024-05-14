@@ -56,51 +56,40 @@ class NLLBInference:
 
 if __name__ == '__main__':
     import os
-    # current_file_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # import yaml
-    # # Load the YAML file
-    # with open(f'{os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}/config/config.yaml', 'r') as file:
-    #     config = yaml.safe_load(file)
+    current_file_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    import yaml
+    # Load the YAML file
+    with open(f'{os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}/config/config.yaml', 'r') as file:
+        config = yaml.safe_load(file)
         
-    # print(config['models']['gpt4_model'])
+    print(config['models']['gpt4_model'])
     
-    # quit()
+    quit()
     
-    # import os
-    # os.environ["OPENAI_API_KEY"] = "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"
+    import os
+    os.environ["OPENAI_API_KEY"] = "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"
     
-    # gpt4o = GPTInference(model_name="gpt-4o")
+    gpt4o = GPTInference(model_name="gpt-4o")
     
-    # text = "ṣùgbọ́n ọlọpáá alábòójútó ìhámọ́ lé"
-    # print(gpt4o.inference(text, src_lang="yo", target_lang="fr"))
-    # print(gpt4o.inference(text, src_lang="yo", target_lang="en"))
+    text = "ṣùgbọ́n ọlọpáá alábòójútó ìhámọ́ lé"
+    print(gpt4o.inference(text, src_lang="yo", target_lang="fr"))
+    print(gpt4o.inference(text, src_lang="yo", target_lang="en"))
     
-    # text = "Cependant, le policier superviseur a souri"
-    # print(gpt4o.inference(text, src_lang="fr", target_lang="yo"))
-    # print(gpt4o.inference(text, src_lang="fr", target_lang="en"))
+    text = "Cependant, le policier superviseur a souri"
+    print(gpt4o.inference(text, src_lang="fr", target_lang="yo"))
+    print(gpt4o.inference(text, src_lang="fr", target_lang="en"))
     
-    # text = "However, the supervising police officer smiled"
-    # print(gpt4o.inference(text, src_lang="en", target_lang="yo"))
-    # print(gpt4o.inference(text, src_lang="en", target_lang="fr"))
+    text = "However, the supervising police officer smiled"
+    print(gpt4o.inference(text, src_lang="en", target_lang="yo"))
+    print(gpt4o.inference(text, src_lang="en", target_lang="fr"))
     
-    # print("="*50)
+    print("="*50)
     
-    # nllb = NLLBInference(model_name="facebook/nllb-200-distilled-600M")
+    nllb = NLLBInference(model_name="facebook/nllb-200-distilled-600M")
     
-    # text = "Xɛ́, nɛ̌ wɛ a ka gbɔn, nɔví ce?"
-    # print(nllb.inference(text, target_lang="en"))
+    text = "Xɛ́, nɛ̌ wɛ a ka gbɔn, nɔví ce?"
+    print(nllb.inference(text, target_lang="en"))
     
-    # text = "C'est quoi, mon frère?"
-    # print(nllb.inference(text, target_lang="fon"))
+    text = "C'est quoi, mon frère?"
+    print(nllb.inference(text, target_lang="fon"))
     
-    
-    # import pygame.mixer
-    # pygame.mixer.init()
-    # def play_mp3(file_path):
-    #     pygame.mixer.music.load(file_path)
-    #     pygame.mixer.music.play()
-    #     while pygame.mixer.music.get_busy():
-    #         pygame.time.Clock().tick(10)
-            
-    # print("Speak a prompt...")
-    # play_mp3("/home/boubacar-diallo/LLAMA/Challenge/MAI/temp.wav")

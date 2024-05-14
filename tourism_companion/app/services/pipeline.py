@@ -57,10 +57,13 @@ if __name__ == '__main__':
     config_file = "/home/boubacar-diallo/LLAMA/Challenge/MAI/tourism_companion/app/config/config.yaml"
     pipe = Pipeline(config_file)
     
-    audio_file = "/home/boubacar-diallo/LLAMA/Challenge/MAI/temp1.wav"
+    import sys
+    print(sys.path)
+    
+    audio_file = "tests/fon.wav"
     print(pipe.pipeline_att(audio_file, language="fon"))
     
-    audio_file = "/home/boubacar-diallo/LLAMA/Challenge/yoruba.wav"
+    audio_file = "tests/yoruba.wav"
     print(pipe.pipeline_att(audio_file, language="yo"))
     
     text = "Xɛ́, nɛ̌ wɛ a ka gbɔn, nɔví ce?"

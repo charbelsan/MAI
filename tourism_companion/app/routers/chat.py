@@ -1,3 +1,5 @@
+
+import __init__
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.schemas import ChatRequest, ChatResponse
@@ -9,18 +11,20 @@ from app.services.gps_detection import requires_gps
 from app.deps import get_db
 from app.utils.helpers import start_or_get_session, store_message
 from app.chat_memory import get_conversation_memory
-from app.rag import load_documents, create_index, rag_query
-from app.chains import search_nearby
-from app.agent import tourism_agent
-from langchain.llms import OpenAI
+# from app.rag import load_documents, create_index, rag_query
+# from app.chains import search_nearby
+# from app.agent import tourism_agent
+# from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
 import yaml
 import os
 
 # Get the current file path
 app_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+config_file = f'{app_path}/config/config.yaml'
 
 # Load the YAML file
-with open(f'{app_path}/config/config.yaml', 'r') as file:
+with open(config_file, 'r') as file:
     config = yaml.safe_load(file)
 
 router = APIRouter()
