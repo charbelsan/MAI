@@ -53,11 +53,11 @@ class Pipeline:
             translate = self.gpt4_chat.inference(text, src_lang="en", target_lang="yo")
             print(translate)
             audio_array, audio_file = self.tts.inference(translate)
-            return audio_file
+            return audio_array,audio_file
         elif language == "fon":
             translate = self.nllb.inference(text, target_lang="fon")
             audio_array, audio_file = self.tts.inference(translate)
-            return audio_file
+            return audio_array,audio_file
         else:
             raise ValueError("Unsupported language for pipeline_ta")
         

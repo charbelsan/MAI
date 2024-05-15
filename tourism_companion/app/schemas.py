@@ -12,7 +12,7 @@ class ChatRequest(BaseModel):
 
     @validator('gps_position')
     def validate_gps_position(cls, v):
-        if v is not None and ('latitude' not in v or 'longitude' not in v):
+        if v is not None and ('lat' not in v or 'lng' not in v):
             raise ValueError('GPS position must include latitude and longitude')
         return v
 
