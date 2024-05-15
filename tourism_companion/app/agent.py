@@ -1,5 +1,5 @@
 from langchain.agents import Agent
-from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from app.tool import GoogleSearchTool

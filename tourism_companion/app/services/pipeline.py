@@ -32,7 +32,8 @@ class Pipeline:
         # Initialize OpenAI GPT-4
         self.whisper = WhisperInference(model_name=config['models']['whisper'])
         self.asr = ASRInference(model_name=config['models']['asr'])
-        self.tts = TTSInference(model_name=config['models']['tts'])
+        self.tts_fon = TTSInference(model_name=config['models']['tts_fon'])
+        self.tts_yor = TTSInference(model_name=config['models']['tts_yor'])
         self.gpt4_chat = GPTInference(model_name=config['models']['gpt4_chat'])
         self.nllb = NLLBInference(model_name=config['models']['nllb'])
         
@@ -52,12 +53,12 @@ class Pipeline:
         if language == "yo":
             translate = self.gpt4_chat.inference(text, src_lang="en", target_lang="yo")
             print(translate)
-            audio_array, audio_file = self.tts.inference(translate)
-            return audio_array,audio_file
+            audio_array, audio_file = self.tts_yor.inference(translate)
+            return audio_file
         elif language == "fon":
             translate = self.nllb.inference(text, target_lang="fon")
-            audio_array, audio_file = self.tts.inference(translate)
-            return audio_array,audio_file
+            audio_array, audio_file = self.tts_fon.inference(translate)
+            return audio_file
         else:
             raise ValueError("Unsupported language for pipeline_ta")
         

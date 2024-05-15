@@ -9,10 +9,10 @@ from app.utils.helpers import start_or_get_session, store_message
 from app.chat_memory import get_conversation_memory
 from app.rag import load_documents, create_index, rag_query
 from app.services.pipeline import Pipeline
-from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from app.config import Config
-from app.chains import search_nearby, create_tourist_circuit, analyze_request
+from app.chains import search_nearby, create_tourist_circuit, analyze_request, get_message
 import os
 import base64
 import tempfile
@@ -22,8 +22,6 @@ router = APIRouter()
 # Load pipeline configurations
 config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config/config.yaml")
 pipeline = Pipeline(config_file=config_file)  # Initialize the pipeline once
-
-
 
 # Initialize OpenAI GPT-4 with the API key
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -79,9 +77,8 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
         action_flag = analyze_request(transcription, conversation_memory)
 
         if action_flag == "tourist_circuit":
-            if not request.gps_position:
-                raise HTTPException(status_code=400, detail="GPS position is required for this request.")
-            response = create_tourist_circuit(request.gps_position, conversation_memory)
+            message_body = get_message()
+            response = create_tourist_circuit(message_body, str(session_id))
             return {"response": response, "session_id": session_id}
 
         elif action_flag == "find_nearby":

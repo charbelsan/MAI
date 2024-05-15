@@ -30,7 +30,7 @@ async def text_to_speech(request: TextToSpeechRequest):
         raise HTTPException(status_code=400, detail="Text, input language, and output language are required")
 
     # Perform text-to-speech conversion
-    audio_array, audio_file_path = pipeline.pipeline_ta(text=text, language=output_lang)
+    audio_file_path = pipeline.pipeline_ta(text=text, language=output_lang)
     
     # Read the audio file and encode to base64
     with open(audio_file_path, "rb") as audio_file:
