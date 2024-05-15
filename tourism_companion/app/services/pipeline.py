@@ -1,4 +1,3 @@
-import __init__
 from app.services.transcription import WhisperInference, ASRInference, TTSInference
 from app.services.translation import NLLBInference, GPTInference
 from app.services.image_description import describe_image
@@ -6,10 +5,16 @@ from app.services.gps_detection import requires_gps
 from langchain_community.llms import OpenAI
 import yaml
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Get the current file path
 app_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+openai_api_key = os.getenv("OPENAI_API_KEY")
+if not openai_api_key:
+    raise ValueError("OPENAI_API_KEY is not set in the environment variables.")
 class Pipeline:
     def __init__(self, config_file:str):
         # Load the YAML file
@@ -19,8 +24,12 @@ class Pipeline:
         self.load_models(self.config)
         
     def load_models(self, config):
+        #Fetch the API key from environment
+        
+        
+        # Initialize models
+        self.gpt4_text = OpenAI(model_name=self.config['models']['gpt4_text'], openai_api_key=openai_api_key)
         # Initialize OpenAI GPT-4
-        self.gpt4_text = OpenAI(model_name=config['models']['gpt4_text'])
         self.whisper = WhisperInference(model_name=config['models']['whisper'])
         self.asr = ASRInference(model_name=config['models']['asr'])
         self.tts = TTSInference(model_name=config['models']['tts'])

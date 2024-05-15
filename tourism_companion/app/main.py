@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Test if the environment variable is correctly loaded
-print("key",os.getenv('OPENAI_API_KEY'))
+print("Loaded API Key:", os.getenv("OPENAI_API_KEY"))
 
 
 app = FastAPI()
