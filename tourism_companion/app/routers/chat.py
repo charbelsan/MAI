@@ -11,6 +11,7 @@ from app.rag import load_documents, create_index, rag_query
 from app.services.pipeline import Pipeline
 from langchain.llms import OpenAI
 from langchain_core.prompts import ChatPromptTemplate
+from app.config import Config
 import os
 import base64
 import tempfile
@@ -25,7 +26,7 @@ pipeline = Pipeline(config_file=config_file)  # Initialize the pipeline once
 
 # Initialize OpenAI GPT-4 with the API key
 openai_api_key = os.getenv("OPENAI_API_KEY")
-gpt4_model = OpenAI(model_name="gpt-4o", openai_api_key=openai_api_key)
+gpt4_model = OpenAI(model_name="gpt-4o", openai_api_key=Config.OPENAI_API_KEY)
 
 # Load the RAG configuration
 use_rag = pipeline.config['features'].get('use_rag', False)
