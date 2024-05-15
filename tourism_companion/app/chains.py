@@ -1,5 +1,5 @@
-from agent import create_nearby_agent, create_tourist_circuit_agent, create_analysis_agent
-from langchain_core.memory import ConversationBufferMemory
+from app.agent import create_nearby_agent, create_tourist_circuit_agent, create_analysis_agent
+from langchain.memory import ConversationBufferMemory
 
 def search_nearby(gps_position, place_type, conversation_memory: ConversationBufferMemory):
     """

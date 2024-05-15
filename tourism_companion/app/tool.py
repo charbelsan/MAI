@@ -1,19 +1,20 @@
 from langchain.tools import Tool
-from app.services.google_search import google_search
+from googleapiclient.discovery import build
 from app.config import Config
 
-google_api_key = Config.GOOGLE_API_KEY
-google_cse_id = Config.GOOGLE_CSE_ID
-
 class GoogleSearchTool(Tool):
-    name = "google_search"
-    description = "Perform a Google search using the Custom Search API."
+    def __init__(self):
+        self.service = build("customsearch", "v1", developerKey=Config.GOOGLE_API_KEY)
+        self.cse_id = Config.GOOGLE_CSE_ID
+        super().__init__(
+            name="Google Search",
+            func=self.search,
+            description="Searches Google for relevant information."
+        )
 
-    def run(self, query: str):
-        return google_search(query, google_api_key, google_cse_id)
-
-# Define the tool for Google search
-google_search_tool = GoogleSearchTool()
+    def search(self, query):
+        res = self.service.cse().list(q=query, cx=self.cse_id).execute()
+        return res.get('items', [])
 
 
 

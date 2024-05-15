@@ -12,6 +12,7 @@ from app.services.pipeline import Pipeline
 from langchain.llms import OpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from app.config import Config
+from app.chains import search_nearby, create_tourist_circuit, analyze_request
 import os
 import base64
 import tempfile
@@ -72,15 +73,22 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
 
     transcription = ""
     if request.text:
-        #language = detect_language(request.text)
         transcription = request.text
 
-        # Check if the prompt requires GPS-based information
-        if requires_gps(transcription):
+        # Analyze the user's request to determine the appropriate action
+        action_flag = analyze_request(transcription, conversation_memory)
+
+        if action_flag == "tourist_circuit":
+            if not request.gps_position:
+                raise HTTPException(status_code=400, detail="GPS position is required for this request.")
+            response = create_tourist_circuit(request.gps_position, conversation_memory)
+            return {"response": response, "session_id": session_id}
+
+        elif action_flag == "find_nearby":
             if not request.gps_position:
                 raise HTTPException(status_code=400, detail="GPS position is required for this request.")
             place_type = "restaurants" if "restaurants" in transcription else "hotels" if "hotels" in transcription else "tourist spots"
-            response = search_nearby(request.gps_position, place_type)
+            response = search_nearby(request.gps_position, place_type, conversation_memory)
             return {"response": response, "session_id": session_id}
     
     elif request.image:
@@ -111,67 +119,3 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
 
     return {"response": response, "session_id": session_id}
 
-@router.post("/api/speechToText", response_model=SpeechToTextResponse)
-async def speech_to_text(request: SpeechToTextRequest):
-    """
-    Convert speech (audio file) to text.
-
-    Args:
-        request (Request): The request payload containing the audio file in base64 and input language.
-
-    Returns:
-        JSON response containing the transcribed text.
-    """
-    data = await request.json()
-    audio_base64 = data.get("audio")
-    input_lang = data.get("inputLang")
-
-    if not audio_base64 or not input_lang:
-        raise HTTPException(status_code=400, detail="Audio file and input language are required")
-
-    # Decode base64 audio file
-    audio_bytes = base64.b64decode(audio_base64)
-
-    # Save to a temporary file
-    with tempfile.NamedTemporaryFile(delete=False) as temp_audio_file:
-        temp_audio_file.write(audio_bytes)
-        temp_audio_file_path = temp_audio_file.name
-
-    # Perform transcription
-    transcription = pipeline.pipeline_att(audio_file=temp_audio_file_path, language=input_lang)
-
-    # Clean up temporary file
-    os.remove(temp_audio_file_path)
-
-    return SpeechToTextResponse(text=transcription)
-
-@router.post("/api/textToSpeech", response_model=TextToSpeechResponse)
-async def text_to_speech(request: TextToSpeechRequest):
-    """
-    Convert text to speech (audio file).
-
-    Args:
-        request (Request): The request payload containing the text and input/output languages.
-
-    Returns:
-        JSON response containing the base64 encoded audio file.
-    """
-    data = await request.json()
-    text = data.get("text")
-    input_lang = data.get("inputLang")
-    output_lang = data.get("outputLang")
-
-    if not text or not input_lang or not output_lang:
-        raise HTTPException(status_code=400, detail="Text, input language, and output language are required")
-
-    # Perform text-to-speech conversion
-    audio_array, audio_file_path = pipeline.pipeline_ta(text=text, language=input_lang)
-
-    # Read the audio file and encode to base64
-    with open(audio_file_path, "rb") as audio_file:
-        audio_base64 = base64.b64encode(audio_file.read()).decode("utf-8")
-
-    # Clean up temporary file
-    os.remove(audio_file_path)
-
-    return TextToSpeechResponse(audio=audio_base64)

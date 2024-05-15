@@ -1,9 +1,9 @@
 from langchain.agents import Agent
 from langchain.llms import OpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.memory import ConversationBufferMemory
-from tools import google_search
-from config import Config
+from langchain.memory import ConversationBufferMemory
+from app.tool import GoogleSearchTool
+from app.config import Config
 
 # Define the prompt template for finding nearby places
 prompt_template_nearby = ChatPromptTemplate.from_messages(
@@ -60,7 +60,7 @@ def create_agent(memory, template, search_function=None):
     )
 
     if search_function:
-        agent.tools['google_search'] = search_function
+        agent.tools['google_search'] = GoogleSearchTool
 
     return agent
 

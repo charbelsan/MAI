@@ -38,6 +38,7 @@ class TTSInference:
         inputs = self.processor(text, return_tensors="pt")
         with torch.no_grad():
             audio_array = self.model(**inputs).waveform
+        print(audio_array)
         torchaudio.save(audio_file, audio_array, sample_rate)
         return audio_array, audio_file
     

@@ -51,6 +51,7 @@ class Pipeline:
     def pipeline_ta(self, text:str, language:str):
         if language == "yo":
             translate = self.gpt4_chat.inference(text, src_lang="en", target_lang="yo")
+            print(translate)
             audio_array, audio_file = self.tts.inference(translate)
             return audio_file
         elif language == "fon":
