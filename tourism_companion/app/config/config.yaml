@@ -14,3 +14,6 @@ transcription:
 
 translation:
   type: google
+
+features:
+  use_rag: False

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
-from app.schemas import ChatRequest, ChatResponse
+from app.schemas import ChatRequest, ChatResponse, SpeechToTextRequest, SpeechToTextResponse, TextToSpeechRequest, TextToSpeechResponse
 from app.services.language_detection import detect_language
 from app.services.image_description import describe_image
 from app.services.gps_detection import requires_gps
@@ -21,9 +21,7 @@ router = APIRouter()
 config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config/config.yaml")
 pipeline = Pipeline(config_file=config_file)  # Initialize the pipeline once
 
-# Load documents and create an index for RAG
-documents = load_documents("MAI/tourism_companion/app/rag_database")
-retriever, texts = create_index(documents)
+
 
 # Initialize OpenAI GPT-4 with the API key
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -87,16 +85,18 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     elif request.image:
         image_bytes = await request.image.read()
         transcription = describe_image(image_bytes)
-    # elif request.gps_position and request.place_type:
-    #     # Handle GPS-based search
-    #     response = search_nearby(request.gps_position, request.place_type)
-    #     return {"response": response, "session_id": session_id}
+   
     else:
         raise HTTPException(status_code=400, detail="No valid input provided")
 
     # Use RAG for context-based querying if enabled
-    rag_response = rag_query(retriever, transcription, use_rag=use_rag)
-    context = rag_response if rag_response else "No additional context available."
+    context="No additional context available."
+    if use_rag:
+        # Load documents and create an index for RAG
+        documents = load_documents("MAI/tourism_companion/app/rag_database")
+        retriever, texts = create_index(documents)
+        rag_response = rag_query(retriever, transcription, use_rag=use_rag)
+        context = rag_response if rag_response else "No additional context available."
 
     # Integrate the chat template
     prompt = chat_template.invoke({"user_message": translation, "context": context})
@@ -110,8 +110,8 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
 
     return {"response": response, "session_id": session_id}
 
-@router.post("/api/speechToText")
-async def speech_to_text(request: Request):
+@router.post("/api/speechToText", response_model=SpeechToTextResponse)
+async def speech_to_text(request: SpeechToTextRequest):
     """
     Convert speech (audio file) to text.
 
@@ -142,10 +142,10 @@ async def speech_to_text(request: Request):
     # Clean up temporary file
     os.remove(temp_audio_file_path)
 
-    return {"text": transcription}
+    return SpeechToTextResponse(text=transcription)
 
-@router.post("/api/textToSpeech")
-async def text_to_speech(request: Request):
+@router.post("/api/textToSpeech", response_model=TextToSpeechResponse)
+async def text_to_speech(request: TextToSpeechRequest):
     """
     Convert text to speech (audio file).
 
@@ -173,4 +173,4 @@ async def text_to_speech(request: Request):
     # Clean up temporary file
     os.remove(audio_file_path)
 
-    return {"audio": audio_base64}
+    return TextToSpeechResponse(audio=audio_base64)

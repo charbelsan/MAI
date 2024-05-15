@@ -3,6 +3,7 @@ from app.database import engine
 from app.models import Base
 from app.routers import chat
 from dotenv import load_dotenv
+import os
 
 # Load environment variables from .env file
 load_dotenv()
