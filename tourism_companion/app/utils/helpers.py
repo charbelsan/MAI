@@ -1,17 +1,30 @@
+import uuid
 from sqlalchemy.orm import Session
-from app.models import User, Conversation
+from app.models import User, Conversation, Message, TouristCircuit as TouristCircuitModel, TouristPoint as TouristPointModel
+from datetime import datetime
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def start_or_get_session(db: Session, user_id: int) -> str:
     """
     Start a new session or get the existing session ID for the user.
     """
+    logger.info(f"Checking existence of user with ID: {user_id}")
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
-        raise ValueError("User not found")
+        logger.info(f"User with ID {user_id} not found, creating new user.")
+        new_user = User(id=user_id, username=f"user_{user_id}", email=f"user_{user_id}@example.com", hashed_password="password")
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        user = new_user
 
     # Check for an existing session
     conversation = db.query(Conversation).filter(Conversation.user_id == user_id).first()
     if conversation:
+        logger.info(f"Existing session found for user ID {user_id}: {conversation.session_id}")
         return conversation.session_id
 
     # Create a new session if none exists
@@ -19,14 +32,23 @@ def start_or_get_session(db: Session, user_id: int) -> str:
     db.add(new_session)
     db.commit()
     db.refresh(new_session)
+    logger.info(f"New session created for user ID {user_id}: {new_session.session_id}")
     return new_session.session_id
 
-
-def store_message(db: Session, session_id: int, sender: str, content: str):
-    message = Message(session_id=session_id, sender=sender, content=content)
-    db.add(message)
+def store_message(db: Session, session_id: str, sender: str, message: str):
+    """
+    Store a message in the database.
+    """
+    new_message = Message(
+        session_id=session_id,
+        user_id=db.query(Conversation).filter(Conversation.session_id == session_id).first().user_id,
+        sender=sender,
+        message=message,
+        timestamp=datetime.utcnow()
+    )
+    db.add(new_message)
     db.commit()
-
+    db.refresh(new_message)
 
 def save_tourist_circuit(db: Session, user_id: int, session_id: str, circuit_data: dict):
     """
