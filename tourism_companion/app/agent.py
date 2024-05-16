@@ -1,9 +1,32 @@
-from langchain.agents import Agent
+from langchain.agents import initialize_agent
 from langchain.llms import OpenAI
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.utilities import GoogleSearchAPIWrapper
 from langchain.memory import ConversationBufferMemory
-from app.tool import GoogleSearchTool
+from langchain_core.tools import Tool
+
+
+from langchain_core.prompts import ChatPromptTemplate
 from app.config import Config
+
+# Initialize LLM
+llm = OpenAI(model_name="gpt-4o", api_key=Config.OPENAI_API_KEY)
+
+# Initialize Google Search tool
+search = GoogleSearchAPIWrapper()
+
+# Define the tool for Google Search
+google_search_tool = Tool(
+    name="google_search",
+    description="Search Google for recent results.",
+    func=search.run,
+)
+
+
+# Define the tools for the agents
+tools = [google_search_tool]
+
+# Initialize memory
+memory = ConversationBufferMemory()
 
 # Define the prompt template for finding nearby places
 prompt_template_nearby = ChatPromptTemplate.from_messages(
@@ -38,64 +61,32 @@ prompt_template_analysis = ChatPromptTemplate.from_messages(
     ]
 )
 
-# Initialize OpenAI GPT-4
-llm = OpenAI(model_name="gpt-4o", openai_api_key=Config.OPENAI_API_KEY)
+# Initialize nearby_agent with Google tools and prompt template
+nearby_agent = initialize_agent(
+    tools, llm, agent="zero-shot-react-description", prompt_template=prompt_template_nearby, verbose=True, memory=memory
+)
 
-def create_agent(memory, template, search_function=None):
-    """
-    Create an agent with a given memory, prompt template, and optional search function.
+# Initialize tourist_circuit_agent with Google tools and prompt template
+tourist_circuit_agent = initialize_agent(
+    tools, llm, agent="zero-shot-react-description", prompt_template=prompt_template_tourist_circuit, verbose=True, memory=memory
+)
 
-    Args:
-        memory (ConversationBufferMemory): The memory to use with the agent.
-        template (ChatPromptTemplate): The prompt template to use with the agent.
-        search_function (function, optional): The search function to use with the agent.
+# Initialize analysis_agent without Google tools but with prompt template
+analysis_agent = initialize_agent(
+    tools, llm, agent="zero-shot-react-description", prompt_template=prompt_template_analysis, verbose=True, memory=memory
+)
 
-    Returns:
-        Agent: The created agent.
-    """
-    agent = Agent(
-        llm=llm,
-        prompt_template=template,
-        memory=memory
-    )
+def search_nearby(location, place_type, conversation_memory):
+    query = f"{place_type} near {location}"
+    results = nearby_agent.run(input=query)
+    return results
 
-    if search_function:
-        agent.tools['google_search'] = GoogleSearchTool
+def create_tourist_circuit(location, conversation_memory):
+    query = f"Create a tourist circuit near {location}"
+    results = tourist_circuit_agent.run(input=query)
+    return results
 
-    return agent
-
-def create_nearby_agent(memory):
-    """
-    Create an agent for finding nearby places.
-
-    Args:
-        memory (ConversationBufferMemory): The memory to use with the agent.
-
-    Returns:
-        Agent: The created agent for finding nearby places.
-    """
-    return create_agent(memory, prompt_template_nearby, lambda query: google_search(query, Config.GOOGLE_API_KEY, Config.GOOGLE_CSE_ID))
-
-def create_tourist_circuit_agent(memory):
-    """
-    Create an agent for creating tourist circuits.
-
-    Args:
-        memory (ConversationBufferMemory): The memory to use with the agent.
-
-    Returns:
-        Agent: The created agent for creating tourist circuits.
-    """
-    return create_agent(memory, prompt_template_tourist_circuit, lambda query: google_search(query, Config.GOOGLE_API_KEY, Config.GOOGLE_CSE_ID))
-
-def create_analysis_agent(memory):
-    """
-    Create an agent for analyzing user requests.
-
-    Args:
-        memory (ConversationBufferMemory): The memory to use with the agent.
-
-    Returns:
-        Agent: The created agent for analyzing user requests.
-    """
-    return create_agent(memory, prompt_template_analysis)
+def analyze_request(request_text, conversation_memory):
+    query = f"Analyze the following request: {request_text}"
+    results = analysis_agent.run(input=query)
+    return results

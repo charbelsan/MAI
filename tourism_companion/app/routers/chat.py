@@ -12,7 +12,8 @@ from app.services.pipeline import Pipeline
 from langchain.llms import OpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from app.config import Config
-from app.chains import search_nearby, create_tourist_circuit, analyze_request
+#from app.chains import search_nearby, create_tourist_circuit, analyze_request
+from app.agent import search_nearby, create_tourist_circuit, analyze_request
 import os
 import base64
 import tempfile
