@@ -11,5 +11,6 @@ router = APIRouter()
 async def get_chat_history(user_id: int, session_id: str, db: Session = Depends(get_db)):
     messages = db.query(Message).filter_by(user_id=user_id, session_id=session_id).all()
     if not messages:
-        raise HTTPException(status_code=404, detail="No messages found for this session and user.")
+         return ChatHistoryResponse(messages=[])
+
     return ChatHistoryResponse(messages=[ChatMessage.from_orm(message) for message in messages])

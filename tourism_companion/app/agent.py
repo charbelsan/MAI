@@ -11,6 +11,7 @@ from app.tool import search_tool
 from app.tool import Weather_tool, Wolfram_tool
 from app.config import Config
 from langchain_core.output_parsers import StrOutputParser
+from langgraph.prebuilt import chat_agent_executor
 
 parser = StrOutputParser()
 CONTEXT = """
@@ -34,6 +35,8 @@ Please adhere to the following guidelines:
 
 Your goal is to be helpful, polite, and informative, enhancing the user's travel experience in Benin. Always prioritize the user's safety and well-being.
 """
+
+agent_executor = chat_agent_executor.create_tool_calling_executor(model, tools)
 
 model_name="gpt-4o" #"text-davinci-003"
 
@@ -79,11 +82,12 @@ class GPSAgent:
         self.readonlymemory = ReadOnlySharedMemory(memory=self.memory)
         
         # Initialize the agent chain
-        self.agent_chain = initialize_agent(tools, self.llm, 
-                                            agent=AgentType.OPENAI_FUNCTIONS,
-                                            verbose=True, 
-                                            memory=self.memory,
-                                            prompt=prompt_template_nearby)
+        self.agent_executor = chat_agent_executor.create_tool_calling_executor(self.llm, tools)
+        # self.agent_chain = initialize_agent(tools, self.llm, 
+        #                                     agent=AgentType.OPENAI_FUNCTIONS,
+        #                                     verbose=True, 
+        #                                     memory=self.memory,
+        #                                     prompt=prompt_template_nearby)
         self.agent_chain.memory.chat_memory.add_ai_message(CONTEXT)
         
 class DispatchAgent:

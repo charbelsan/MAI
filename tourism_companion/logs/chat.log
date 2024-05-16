@@ -953,3 +953,747 @@ OSError: libavutil.so.57: cannot open shared object file: No such file or direct
 2024-05-16 12:52:16,549 - httpcore.http11 - DEBUG - response_closed.complete
 2024-05-16 12:52:16,549 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Thu, 16 May 2024 12:52:16 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'exxact-robotics'), ('openai-processing-ms', '1108'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=15724800; includeSubDomains'), ('x-ratelimit-limit-requests', '500'), ('x-ratelimit-limit-tokens', '30000'), ('x-ratelimit-remaining-requests', '499'), ('x-ratelimit-remaining-tokens', '29507'), ('x-ratelimit-reset-requests', '120ms'), ('x-ratelimit-reset-tokens', '986ms'), ('x-request-id', 'req_d6472a38c750da4ff796704a33377120'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=iAO8RfgeW9YeD8VlsbsOhKvtaH5m7iBkwuVSJNpG2MA-1715863936-1.0.1.1-m2eWU3nbk448Y306dhuMP8bhHNl2JR_UiOJFsbwDWXOM519JIWn38uUsBvv8MSCTmyZalT5vLLWp1oUCARtnsQ; path=/; expires=Thu, 16-May-24 13:22:16 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=F4i4ff_EhltgfpTnDdwV0gTx959zW.9aSvxAHQy0J6w-1715863936543-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '884b80fa79482a1d-CDG'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
 2024-05-16 12:52:16,550 - openai._base_client - DEBUG - request_id: req_d6472a38c750da4ff796704a33377120
+2024-05-16 12:55:44,376 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:44,377 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:44,388 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:44,389 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:44,583 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 12:55:44,584 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 12:55:44,585 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 12:55:44,586 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 12:55:44,586 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 12:55:44,692 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 12:55:44,851 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:44,852 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:44,861 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:44,862 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:46,389 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:46,770 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:46,774 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 12:55:46,899 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 12:55:47,696 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:47,800 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:47,912 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 12:55:48,021 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:48,131 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:49,193 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:49,300 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:49,408 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:50,432 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:50,435 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:50,436 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:50,447 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:50,448 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:50,560 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:50,578 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 12:55:50,704 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 12:55:51,880 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:52,102 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:53,343 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:53,344 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:53,355 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:53,356 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:54,771 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:54,873 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:54,877 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 12:55:55,025 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 12:55:55,803 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:55,905 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:56,030 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 12:55:56,132 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:56,233 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:57,177 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:57,289 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:57,390 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:58,380 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:55:58,384 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:58,384 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:58,395 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 12:55:58,396 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 12:55:58,508 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 12:55:58,512 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 12:55:58,802 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 12:55:59,868 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 12:56:00,090 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 12:56:01,267 - root - INFO - Load APP on MAIN
+2024-05-16 12:56:01,267 - root - INFO - Loaded API Key:, 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
+2024-05-16 13:07:00,089 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:00,090 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:00,101 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:00,102 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:00,296 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 13:07:00,298 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 13:07:00,299 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 13:07:00,299 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 13:07:00,300 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 13:07:00,400 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 13:07:00,546 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:00,547 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:00,556 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:00,557 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:02,016 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:02,116 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:02,120 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:07:02,246 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:07:02,954 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:03,075 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:03,182 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:07:03,287 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:03,391 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:04,351 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:04,454 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:04,559 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:05,489 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:05,492 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:05,493 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:05,503 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:05,504 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:05,629 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:05,645 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:07:05,767 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:07:06,840 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:07,054 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:08,202 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:08,203 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:08,213 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:08,214 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:09,602 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:09,703 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:09,706 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:07:09,883 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:07:10,606 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:10,706 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:10,823 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:07:10,927 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:11,025 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:11,874 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:11,977 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:12,122 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:13,000 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:13,003 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:13,004 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:13,015 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:07:13,016 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:07:13,134 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:07:13,138 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:07:13,270 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:07:14,110 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:14,340 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:07:15,460 - root - INFO - Load APP on MAIN
+2024-05-16 13:07:15,460 - root - INFO - Loaded API Key:, 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
+2024-05-16 13:09:54,365 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:09:54,366 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:09:54,376 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:09:54,377 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:09:54,559 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 13:09:54,560 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 13:09:54,561 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 13:09:54,562 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 13:09:54,563 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 13:09:54,665 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 13:09:54,807 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:09:54,808 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:09:54,817 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:09:54,818 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:09:56,252 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:56,349 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:56,353 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:09:56,476 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:09:57,174 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:09:57,275 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:09:57,380 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:09:57,482 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:57,602 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:58,469 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:09:58,573 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:58,676 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:59,547 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:09:59,549 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:09:59,550 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:09:59,560 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:09:59,561 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:09:59,670 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:09:59,686 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:09:59,812 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:00,934 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:01,151 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:02,333 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:02,334 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:02,345 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:02,346 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:03,733 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:04,431 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:04,436 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:10:04,560 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:05,247 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:05,362 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:05,481 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:10:05,583 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:05,685 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:06,579 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:06,679 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:06,783 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:07,643 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:07,646 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:07,647 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:07,657 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:07,658 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:07,764 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:07,768 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:10:07,902 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:08,739 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:08,962 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:10,111 - root - INFO - Load APP on MAIN
+2024-05-16 13:10:10,111 - root - INFO - Loaded API Key:, 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
+2024-05-16 13:10:17,339 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:17,340 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:17,350 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:17,351 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:17,540 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 13:10:17,541 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 13:10:17,542 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 13:10:17,543 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 13:10:17,544 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 13:10:17,646 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 13:10:17,792 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:17,793 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:17,802 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:17,803 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:19,210 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:19,311 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:19,314 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:10:19,605 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:20,288 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:20,405 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:20,515 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:10:20,619 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:20,719 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:21,575 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:21,678 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:21,778 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:22,672 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:22,675 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:22,676 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:22,686 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:22,687 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:22,798 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:22,815 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:10:22,947 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:23,981 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:24,201 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:25,315 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:25,316 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:25,326 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:25,327 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:26,708 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:26,808 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:26,811 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:10:26,935 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:27,613 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:27,713 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:27,821 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:10:27,924 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:28,027 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:28,880 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:28,989 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:29,087 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:29,962 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:29,965 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:29,966 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:29,976 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:10:29,977 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:10:30,109 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:10:30,113 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:10:30,237 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:10:31,043 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:31,258 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:10:32,370 - root - INFO - Load APP on MAIN
+2024-05-16 13:10:32,371 - root - INFO - Loaded API Key:, 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
+2024-05-16 13:20:19,019 - app.utils.helpers - INFO - Checking existence of user with ID: 2
+2024-05-16 13:20:19,039 - app.utils.helpers - INFO - Existing session found for user ID 2: 4d36c0a3-37f5-4a34-940f-1fa7b9eb1477
+2024-05-16 13:20:19,042 - root - INFO - Transcription: quelles sont les restaurants cool a proximite  <class 'str'>
+2024-05-16 13:20:19,067 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "You are an AI assistant that analyzes user requests to determine the appropriate action. Based on the user's input, you should categorize the request into one of the following categories: 'tourist_circuit' for creating or refining a tourist circuit, 'find_nearby' for finding nearby places, 'validate_circuit' for validating a tourist circuit, or 'other' for any other type of request. Analyze the user's input and return a JSON object with a single key 'flag' and the corresponding action value. For example, flag: detected_flag. Be precise and clear in your categorization."}, {'role': 'user', 'content': 'quelles sont les restaurants cool a proximite'}], 'model': 'gpt-4o', 'max_tokens': 150, 'n': 1, 'stream': False, 'temperature': 0.2}}
+2024-05-16 13:20:19,077 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2024-05-16 13:20:19,077 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2024-05-16 13:20:19,085 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f9e586251e0>
+2024-05-16 13:20:19,085 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x7f9f5d72a1c0> server_hostname='api.openai.com' timeout=None
+2024-05-16 13:20:19,095 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f9e58624f40>
+2024-05-16 13:20:19,095 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2024-05-16 13:20:19,096 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-05-16 13:20:19,096 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2024-05-16 13:20:19,096 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-05-16 13:20:19,097 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2024-05-16 13:20:19,856 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Thu, 16 May 2024 13:20:19 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'exxact-robotics'), (b'openai-processing-ms', b'446'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29693'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'614ms'), (b'x-request-id', b'req_aa94437d90ef17f492fabd7ff997f5a8'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=NlXeYPwJg2x2vTuU2LBDP6Pgeb0ShszEluIxfxFV0dM-1715865619-1.0.1.1-L9TgB2TwqtaYtzXaAO0chUK7OaJZdW1B5Ncjfk9_gwIGux8T.Kf60UVnPFOKsFT12B39pemww.N3INI1.cSIng; path=/; expires=Thu, 16-May-24 13:50:19 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=u5YEgmk3VO6r3M51vSLBwUTTq0DWGjlqDkaVTm0l3ew-1715865619852-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'884baa1758c7f1a8-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2024-05-16 13:20:19,857 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-05-16 13:20:19,858 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2024-05-16 13:20:19,858 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-05-16 13:20:19,859 - httpcore.http11 - DEBUG - response_closed.started
+2024-05-16 13:20:19,859 - httpcore.http11 - DEBUG - response_closed.complete
+2024-05-16 13:20:19,859 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Thu, 16 May 2024 13:20:19 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'exxact-robotics'), ('openai-processing-ms', '446'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=15724800; includeSubDomains'), ('x-ratelimit-limit-requests', '500'), ('x-ratelimit-limit-tokens', '30000'), ('x-ratelimit-remaining-requests', '499'), ('x-ratelimit-remaining-tokens', '29693'), ('x-ratelimit-reset-requests', '120ms'), ('x-ratelimit-reset-tokens', '614ms'), ('x-request-id', 'req_aa94437d90ef17f492fabd7ff997f5a8'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=NlXeYPwJg2x2vTuU2LBDP6Pgeb0ShszEluIxfxFV0dM-1715865619-1.0.1.1-L9TgB2TwqtaYtzXaAO0chUK7OaJZdW1B5Ncjfk9_gwIGux8T.Kf60UVnPFOKsFT12B39pemww.N3INI1.cSIng; path=/; expires=Thu, 16-May-24 13:50:19 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=u5YEgmk3VO6r3M51vSLBwUTTq0DWGjlqDkaVTm0l3ew-1715865619852-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '884baa1758c7f1a8-CDG'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2024-05-16 13:20:19,860 - openai._base_client - DEBUG - request_id: req_aa94437d90ef17f492fabd7ff997f5a8
+2024-05-16 13:20:19,879 - root - INFO - Action Flag: ```json
+{
+  "flag": "find_nearby"
+}
+```
+2024-05-16 13:20:19,879 - root - INFO - Place type: restaurants
+2024-05-16 13:22:03,700 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:03,701 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:03,711 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:03,712 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:03,899 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 13:22:03,900 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 13:22:03,901 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 13:22:03,902 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 13:22:03,903 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 13:22:04,002 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 13:22:04,152 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:04,152 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:04,162 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:04,163 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:05,608 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:05,715 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:05,719 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:22:05,843 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:22:06,562 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:06,662 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:06,772 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:22:07,021 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:07,142 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:08,199 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:08,319 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:08,429 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:09,304 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:09,307 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:09,308 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:09,319 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:09,320 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:09,437 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:09,455 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:22:09,581 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:22:10,664 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:10,885 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:12,045 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:12,046 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:12,057 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:12,057 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:13,534 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:13,802 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:13,807 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:22:13,929 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:22:14,664 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:14,765 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:14,872 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:22:14,978 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:15,078 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:15,939 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:16,051 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:16,153 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:17,053 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:17,056 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:17,057 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:17,068 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:22:17,068 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:22:17,181 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:22:17,185 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:22:17,306 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:22:18,173 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:18,393 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:22:19,550 - root - INFO - Load APP on MAIN
+2024-05-16 13:22:19,550 - root - INFO - Loaded API Key:, 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
+2024-05-16 13:22:25,486 - app.utils.helpers - INFO - Checking existence of user with ID: 2
+2024-05-16 13:22:25,507 - app.utils.helpers - INFO - Existing session found for user ID 2: 4d36c0a3-37f5-4a34-940f-1fa7b9eb1477
+2024-05-16 13:22:25,510 - root - INFO - Transcription: quelles sont les restaurants cool a proximite  <class 'str'>
+2024-05-16 13:22:25,537 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "You are an AI assistant that analyzes user requests to determine the appropriate action. Based on the user's input, you should categorize the request into one of the following categories: 'tourist_circuit' for creating or refining a tourist circuit, 'find_nearby' for finding nearby places, 'validate_circuit' for validating a tourist circuit, or 'other' for any other type of request. Analyze the user's input and return a JSON object with a single key 'flag' and the corresponding action value. For example, flag: detected_flag. Be precise and clear in your categorization."}, {'role': 'user', 'content': 'quelles sont les restaurants cool a proximite'}], 'model': 'gpt-4o', 'max_tokens': 150, 'n': 1, 'stream': False, 'temperature': 0.2}}
+2024-05-16 13:22:25,546 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2024-05-16 13:22:25,547 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2024-05-16 13:22:25,565 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fdf71009300>
+2024-05-16 13:22:25,565 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x7fe0756d21c0> server_hostname='api.openai.com' timeout=None
+2024-05-16 13:22:25,575 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fdf71009060>
+2024-05-16 13:22:25,576 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2024-05-16 13:22:25,576 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-05-16 13:22:25,576 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2024-05-16 13:22:25,577 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-05-16 13:22:25,577 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2024-05-16 13:22:26,384 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Thu, 16 May 2024 13:22:26 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'exxact-robotics'), (b'openai-processing-ms', b'495'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29693'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'614ms'), (b'x-request-id', b'req_1620b347a5f7e5434dab6e529eb99fc8'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=XG_NvwmHnx6KIGScNNRENi2AqajEnjSpDa0pHks1C5U-1715865746-1.0.1.1-N2BhRNsZrdkXNj7MHVrOn_20aN.zj3d8KCDV3p7CncVLZcF0i6BPhNT8JCI.Op5dJVdzJ_Du9I4gh3IVSIt8sA; path=/; expires=Thu, 16-May-24 13:52:26 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=WNl78MybBwdFCbyNcYJLKuz5ZUyEyiutrSGAp74KTm4-1715865746380-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'884bad2ddfdd6edb-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2024-05-16 13:22:26,386 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-05-16 13:22:26,386 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2024-05-16 13:22:26,386 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-05-16 13:22:26,387 - httpcore.http11 - DEBUG - response_closed.started
+2024-05-16 13:22:26,387 - httpcore.http11 - DEBUG - response_closed.complete
+2024-05-16 13:22:26,387 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Thu, 16 May 2024 13:22:26 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'exxact-robotics'), ('openai-processing-ms', '495'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=15724800; includeSubDomains'), ('x-ratelimit-limit-requests', '500'), ('x-ratelimit-limit-tokens', '30000'), ('x-ratelimit-remaining-requests', '499'), ('x-ratelimit-remaining-tokens', '29693'), ('x-ratelimit-reset-requests', '120ms'), ('x-ratelimit-reset-tokens', '614ms'), ('x-request-id', 'req_1620b347a5f7e5434dab6e529eb99fc8'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=XG_NvwmHnx6KIGScNNRENi2AqajEnjSpDa0pHks1C5U-1715865746-1.0.1.1-N2BhRNsZrdkXNj7MHVrOn_20aN.zj3d8KCDV3p7CncVLZcF0i6BPhNT8JCI.Op5dJVdzJ_Du9I4gh3IVSIt8sA; path=/; expires=Thu, 16-May-24 13:52:26 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=WNl78MybBwdFCbyNcYJLKuz5ZUyEyiutrSGAp74KTm4-1715865746380-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '884bad2ddfdd6edb-CDG'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2024-05-16 13:22:26,388 - openai._base_client - DEBUG - request_id: req_1620b347a5f7e5434dab6e529eb99fc8
+2024-05-16 13:22:26,406 - root - INFO - Action Flag: {
+  "flag": "find_nearby"
+}
+2024-05-16 13:22:26,406 - root - INFO - Place type: restaurants
+2024-05-16 13:28:04,829 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:04,830 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:04,841 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:04,841 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:05,032 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 13:28:05,033 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 13:28:05,034 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 13:28:05,035 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 13:28:05,035 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 13:28:05,136 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 13:28:05,287 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:05,288 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:05,298 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:05,298 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:06,776 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:06,887 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:06,890 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:28:07,016 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:28:07,916 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:08,020 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:08,173 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:28:08,279 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:08,384 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:09,354 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:09,477 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:09,580 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:10,513 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:10,516 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:10,516 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:10,527 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:10,528 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:10,642 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:10,662 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:28:10,794 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:28:12,033 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:12,254 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:13,481 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:13,482 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:13,493 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:13,494 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:14,893 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:14,993 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:14,997 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:28:15,122 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:28:15,848 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:15,949 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:16,177 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 13:28:16,292 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:16,398 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:17,352 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:17,460 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:17,658 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:18,568 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:18,572 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:18,573 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:18,584 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 13:28:18,585 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 13:28:18,701 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 13:28:18,705 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 13:28:18,830 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 13:28:19,719 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:19,940 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 13:28:21,087 - root - INFO - Load APP on MAIN
+2024-05-16 13:28:21,087 - root - INFO - Loaded API Key:, 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
+2024-05-16 13:28:31,182 - app.utils.helpers - INFO - Checking existence of user with ID: 2
+2024-05-16 13:28:31,207 - app.utils.helpers - INFO - Existing session found for user ID 2: 4d36c0a3-37f5-4a34-940f-1fa7b9eb1477
+2024-05-16 13:28:31,210 - root - INFO - Transcription: quelles sont les restaurants cool a proximite  <class 'str'>
+2024-05-16 13:28:31,240 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': "You are an AI assistant that analyzes user requests to determine the appropriate action. Based on the user's input, you should categorize the request into one of the following categories: 'tourist_circuit' for creating or refining a tourist circuit, 'find_nearby' for finding nearby places, 'validate_circuit' for validating a tourist circuit, or 'other' for any other type of request. Analyze the user's input and return a JSON object with a single key 'flag' and the corresponding action value. For example, flag: detected_flag. Be precise and clear in your categorization."}, {'role': 'user', 'content': 'quelles sont les restaurants cool a proximite'}], 'model': 'gpt-4o', 'max_tokens': 150, 'n': 1, 'stream': False, 'temperature': 0.2}}
+2024-05-16 13:28:31,250 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2024-05-16 13:28:31,250 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2024-05-16 13:28:31,266 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efd2471d090>
+2024-05-16 13:28:31,266 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x7efe297b21c0> server_hostname='api.openai.com' timeout=None
+2024-05-16 13:28:31,277 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efd2471cdf0>
+2024-05-16 13:28:31,277 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2024-05-16 13:28:31,278 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-05-16 13:28:31,278 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2024-05-16 13:28:31,278 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-05-16 13:28:31,279 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2024-05-16 13:28:31,922 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Thu, 16 May 2024 13:28:31 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'exxact-robotics'), (b'openai-processing-ms', b'336'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29693'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'614ms'), (b'x-request-id', b'req_580bf5937d53a675453b654913aebc0a'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=uzIby6LIh3EXvNgvdzuW1NsjOjufcIRv_skUBS8UsUg-1715866111-1.0.1.1-ap7LNgYKfaRCaAdC1gGHf5Q5rBgj2uOo13pieAqF0cqqCxdw1bU5bLMtM1wx8wUoIFYvw76qk.sepFvhnymG9A; path=/; expires=Thu, 16-May-24 13:58:31 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=gpkmm71WKi6qGI3GzuHDvyvH4Lg0ygXwbJaF.tnHM0o-1715866111918-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'884bb61b8b83d3a3-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2024-05-16 13:28:31,924 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-05-16 13:28:31,924 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2024-05-16 13:28:31,925 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-05-16 13:28:31,925 - httpcore.http11 - DEBUG - response_closed.started
+2024-05-16 13:28:31,925 - httpcore.http11 - DEBUG - response_closed.complete
+2024-05-16 13:28:31,926 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Thu, 16 May 2024 13:28:31 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'exxact-robotics'), ('openai-processing-ms', '336'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=15724800; includeSubDomains'), ('x-ratelimit-limit-requests', '500'), ('x-ratelimit-limit-tokens', '30000'), ('x-ratelimit-remaining-requests', '499'), ('x-ratelimit-remaining-tokens', '29693'), ('x-ratelimit-reset-requests', '120ms'), ('x-ratelimit-reset-tokens', '614ms'), ('x-request-id', 'req_580bf5937d53a675453b654913aebc0a'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=uzIby6LIh3EXvNgvdzuW1NsjOjufcIRv_skUBS8UsUg-1715866111-1.0.1.1-ap7LNgYKfaRCaAdC1gGHf5Q5rBgj2uOo13pieAqF0cqqCxdw1bU5bLMtM1wx8wUoIFYvw76qk.sepFvhnymG9A; path=/; expires=Thu, 16-May-24 13:58:31 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=gpkmm71WKi6qGI3GzuHDvyvH4Lg0ygXwbJaF.tnHM0o-1715866111918-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '884bb61b8b83d3a3-CDG'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2024-05-16 13:28:31,926 - openai._base_client - DEBUG - request_id: req_580bf5937d53a675453b654913aebc0a
+2024-05-16 13:28:31,945 - root - INFO - Action Flag: {
+  "flag": "find_nearby"
+}
+2024-05-16 13:28:31,946 - root - INFO - Place type: restaurants
+2024-05-16 13:28:31,958 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are a helpful AI assistant.'}, {'role': 'user', 'content': 'Find restaurants near latitude 37.7749 and longitude -122.4194.'}], 'model': 'gpt-4o', 'functions': [{'name': 'Search by Google', 'description': 'Useful when you need to answer questions about current events and real-time information in Benin.Providing information about tourist attractions, landmarks, and cultural sites in Benin.Giving travel advice, including transportation, accommodation, and dining options in Benin.Offering general tips on local customs, weather, and safety in Benin.Performing web searches to provide relevant information based on user queries in Benin.Determining if the request needs GPS information to find nearby places like restaurants, hotels, or tourist spots in Benin.', 'parameters': {'properties': {'__arg1': {'title': '__arg1', 'type': 'string'}}, 'required': ['__arg1'], 'type': 'object'}}], 'max_tokens': 150, 'n': 1, 'stream': False, 'temperature': 0.2}}
+2024-05-16 13:28:31,959 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2024-05-16 13:28:31,960 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2024-05-16 13:28:31,967 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efd2471cf70>
+2024-05-16 13:28:31,968 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x7efe2b39be40> server_hostname='api.openai.com' timeout=None
+2024-05-16 13:28:31,977 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7efd2471cf40>
+2024-05-16 13:28:31,977 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2024-05-16 13:28:31,977 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-05-16 13:28:31,978 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2024-05-16 13:28:31,978 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-05-16 13:28:31,978 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2024-05-16 13:28:32,302 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 400, b'Bad Request', [(b'Date', b'Thu, 16 May 2024 13:28:32 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'260'), (b'Connection', b'keep-alive'), (b'openai-organization', b'exxact-robotics'), (b'openai-processing-ms', b'21'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29824'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'352ms'), (b'x-request-id', b'req_893ffb2f1feba2a16a9d0002f2c015b3'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=JwwaMPrY9fL9YhAIECamLil7VBuCg8RPvZDatKjI9yQ-1715866112-1.0.1.1-Yt51f5r947CGknBTmaf88oGorNnJwiW3N4hm1Ys34mWmx7F.dIbSr2qtNVpSxKncGMC23CACHqPZ.l4Ke1gndA; path=/; expires=Thu, 16-May-24 13:58:32 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=ruMn3PK55c.RHwOl1ccBMX_OX5.yhjq0cAgq6OOG0Ew-1715866112299-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'884bb61fdbd66f75-CDG'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2024-05-16 13:28:32,303 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2024-05-16 13:28:32,304 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2024-05-16 13:28:32,304 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-05-16 13:28:32,304 - httpcore.http11 - DEBUG - response_closed.started
+2024-05-16 13:28:32,305 - httpcore.http11 - DEBUG - response_closed.complete
+2024-05-16 13:28:32,305 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "400 Bad Request" Headers([('date', 'Thu, 16 May 2024 13:28:32 GMT'), ('content-type', 'application/json'), ('content-length', '260'), ('connection', 'keep-alive'), ('openai-organization', 'exxact-robotics'), ('openai-processing-ms', '21'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=15724800; includeSubDomains'), ('x-ratelimit-limit-requests', '500'), ('x-ratelimit-limit-tokens', '30000'), ('x-ratelimit-remaining-requests', '499'), ('x-ratelimit-remaining-tokens', '29824'), ('x-ratelimit-reset-requests', '120ms'), ('x-ratelimit-reset-tokens', '352ms'), ('x-request-id', 'req_893ffb2f1feba2a16a9d0002f2c015b3'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=JwwaMPrY9fL9YhAIECamLil7VBuCg8RPvZDatKjI9yQ-1715866112-1.0.1.1-Yt51f5r947CGknBTmaf88oGorNnJwiW3N4hm1Ys34mWmx7F.dIbSr2qtNVpSxKncGMC23CACHqPZ.l4Ke1gndA; path=/; expires=Thu, 16-May-24 13:58:32 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=ruMn3PK55c.RHwOl1ccBMX_OX5.yhjq0cAgq6OOG0Ew-1715866112299-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '884bb61fdbd66f75-CDG'), ('alt-svc', 'h3=":443"; ma=86400')])
+2024-05-16 13:28:32,305 - openai._base_client - DEBUG - request_id: req_893ffb2f1feba2a16a9d0002f2c015b3
+2024-05-16 13:28:32,306 - openai._base_client - DEBUG - Encountered httpx.HTTPStatusError
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/openai/_base_client.py", line 999, in _request
+    response.raise_for_status()
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/httpx/_models.py", line 761, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.openai.com/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2024-05-16 13:28:32,307 - openai._base_client - DEBUG - Not retrying
+2024-05-16 13:28:32,307 - openai._base_client - DEBUG - Re-raising status error
+2024-05-16 14:09:07,476 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:07,477 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:07,487 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:07,488 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:07,673 - torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-05-16 14:09:07,674 - torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.58: cannot open shared object file: No such file or directory
+2024-05-16 14:09:07,675 - torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-05-16 14:09:07,676 - torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torio/_extension/utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "/opt/conda/envs/stable/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "/opt/conda/envs/stable/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libavutil.so.57: cannot open shared object file: No such file or directory
+2024-05-16 14:09:07,677 - torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-05-16 14:09:07,784 - torio._extension.utils - DEBUG - Successfully loaded FFmpeg4
+2024-05-16 14:09:07,930 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:07,931 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:07,941 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:07,942 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:09,424 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:09,537 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:09,541 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 14:09:09,664 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 14:09:10,421 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:10,525 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:10,640 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 14:09:10,757 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:10,861 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:11,811 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:11,917 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:12,023 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:12,970 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:12,974 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:12,975 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:12,987 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:12,988 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:13,145 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:13,167 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 14:09:13,295 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 14:09:14,461 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:14,720 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:15,958 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:15,959 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:15,969 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:15,970 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:17,367 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:17,470 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:17,475 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 14:09:17,777 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 14:09:18,540 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/preprocessor_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:18,647 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:18,753 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /chrisjay/fonxlsr/resolve/main/processor_config.json HTTP/1.1" 404 0
+2024-05-16 14:09:18,867 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:18,968 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:19,960 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-fon/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:20,063 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:20,203 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:21,133 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/mms-tts-yor/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:21,136 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:21,137 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:21,147 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-05-16 14:09:21,148 - httpx - DEBUG - load_verify_locations cafile='/usr/lib/ssl/certs/ca-certificates.crt'
+2024-05-16 14:09:21,260 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/config.json HTTP/1.1" 200 0
+2024-05-16 14:09:21,263 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-05-16 14:09:21,395 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/model.safetensors HTTP/1.1" 404 0
+2024-05-16 14:09:22,282 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/generation_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:22,553 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "HEAD /facebook/nllb-200-distilled-600M/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+2024-05-16 14:09:23,736 - root - INFO - Load APP on MAIN
+2024-05-16 14:09:23,737 - root - INFO - Loaded API Key:, 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
+2024-05-16 14:39:15,716 - openai._base_client - DEBUG - Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'content': 'You are a helpful assistant that translates English to Yoruba.', 'role': 'system'}, {'content': 'Hello, how are you?', 'role': 'user'}], 'model': 'gpt-4o', 'max_tokens': 150, 'n': 1, 'stream': False, 'temperature': 0.0}}
+2024-05-16 14:39:15,726 - openai._base_client - DEBUG - Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+2024-05-16 14:39:15,726 - httpcore.connection - DEBUG - connect_tcp.started host='api.openai.com' port=443 local_address=None timeout=None socket_options=None
+2024-05-16 14:39:15,753 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f4914720fa0>
+2024-05-16 14:39:15,753 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x7f4895775a40> server_hostname='api.openai.com' timeout=None
+2024-05-16 14:39:15,763 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f4914720d00>
+2024-05-16 14:39:15,763 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2024-05-16 14:39:15,764 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-05-16 14:39:15,764 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2024-05-16 14:39:15,764 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-05-16 14:39:15,765 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2024-05-16 14:39:16,378 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Thu, 16 May 2024 14:39:16 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'openai-organization', b'exxact-robotics'), (b'openai-processing-ms', b'313'), (b'openai-version', b'2020-10-01'), (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), (b'x-ratelimit-limit-requests', b'500'), (b'x-ratelimit-limit-tokens', b'30000'), (b'x-ratelimit-remaining-requests', b'499'), (b'x-ratelimit-remaining-tokens', b'29827'), (b'x-ratelimit-reset-requests', b'120ms'), (b'x-ratelimit-reset-tokens', b'346ms'), (b'x-request-id', b'req_7d0db7c4a69c2d7afbc3b3dce31677b0'), (b'CF-Cache-Status', b'DYNAMIC'), (b'Set-Cookie', b'__cf_bm=iLVEf8uX5HcOlGwMQPsTqFMifpllQdP.M8rm6xBxXbs-1715870356-1.0.1.1-_0xLt_xQxEzqY80E1T9_aupu9iwKxvlUrrV.b_LayiFu4Vg3yGFlVGLfhEn6Cps4mGDsAIAHBtOl2M_tlmvKMQ; path=/; expires=Thu, 16-May-24 15:09:16 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=7cZdJg0gj.ABYdZYqMuwTIOzpqIHXLzebd_uwnoSV7Q-1715870356374-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), (b'Server', b'cloudflare'), (b'CF-RAY', b'884c1dbb8c3b6f9a-CDG'), (b'Content-Encoding', b'gzip'), (b'alt-svc', b'h3=":443"; ma=86400')])
+2024-05-16 14:39:16,379 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-05-16 14:39:16,380 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2024-05-16 14:39:16,380 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-05-16 14:39:16,381 - httpcore.http11 - DEBUG - response_closed.started
+2024-05-16 14:39:16,381 - httpcore.http11 - DEBUG - response_closed.complete
+2024-05-16 14:39:16,381 - openai._base_client - DEBUG - HTTP Response: POST https://api.openai.com/v1/chat/completions "200 OK" Headers([('date', 'Thu, 16 May 2024 14:39:16 GMT'), ('content-type', 'application/json'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('openai-organization', 'exxact-robotics'), ('openai-processing-ms', '313'), ('openai-version', '2020-10-01'), ('strict-transport-security', 'max-age=15724800; includeSubDomains'), ('x-ratelimit-limit-requests', '500'), ('x-ratelimit-limit-tokens', '30000'), ('x-ratelimit-remaining-requests', '499'), ('x-ratelimit-remaining-tokens', '29827'), ('x-ratelimit-reset-requests', '120ms'), ('x-ratelimit-reset-tokens', '346ms'), ('x-request-id', 'req_7d0db7c4a69c2d7afbc3b3dce31677b0'), ('cf-cache-status', 'DYNAMIC'), ('set-cookie', '__cf_bm=iLVEf8uX5HcOlGwMQPsTqFMifpllQdP.M8rm6xBxXbs-1715870356-1.0.1.1-_0xLt_xQxEzqY80E1T9_aupu9iwKxvlUrrV.b_LayiFu4Vg3yGFlVGLfhEn6Cps4mGDsAIAHBtOl2M_tlmvKMQ; path=/; expires=Thu, 16-May-24 15:09:16 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('set-cookie', '_cfuvid=7cZdJg0gj.ABYdZYqMuwTIOzpqIHXLzebd_uwnoSV7Q-1715870356374-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None'), ('server', 'cloudflare'), ('cf-ray', '884c1dbb8c3b6f9a-CDG'), ('content-encoding', 'gzip'), ('alt-svc', 'h3=":443"; ma=86400')])
+2024-05-16 14:39:16,382 - openai._base_client - DEBUG - request_id: req_7d0db7c4a69c2d7afbc3b3dce31677b0

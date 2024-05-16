@@ -16,7 +16,7 @@ from langchain.memory import ConversationBufferMemory
 
 # Initialize the agent chain
 dispatch_agent = DispatchAgent("gpt-4o")
-gps_agent = GPSAgent("gpt-4o")
+gps_agent = GPSAgent("gpt-4o").agent_chain
 main_agent_1=DefaultAgent("gpt-4o")
 
                 
@@ -33,7 +33,7 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 def main_chain(translation , context, chat_template):
     template={"user_message": translation, "context": context}
-    main_agent_1.chain(chat_template,template )
+    main_agent_1.chain(chat_template,template)
 
 
 
@@ -49,7 +49,7 @@ def search_nearby(gps_position, place_type, conversation_memory: ConversationBuf
     Returns:
         str: The response from the agent.
     """
-    input_text = f"Find {place_type} near latitude {gps_position['latitude']} and longitude {gps_position['longitude']}."
+    input_text = f"Find {place_type} near latitude {gps_position['lat']} and longitude {gps_position['lng']}."
     #gps_agent.memory.chat_memory.add_user_message(input_text)
     response = gps_agent.run(input=input_text)
     return response
