@@ -2,9 +2,13 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from app.schemas import SpeechToTextRequest, SpeechToTextResponse
 from app.services.pipeline import Pipeline
+from app.services.utils import play_mp3
 import base64
 import tempfile
 import os
+
+import warnings
+warnings.filterwarnings("ignore")
 
 router = APIRouter()
 
@@ -25,12 +29,17 @@ async def speech_to_text(request: SpeechToTextRequest):
     """
     audio_base64 = request.audio
     input_lang = request.inputLang
+    
+    print("audio_base64 ", audio_base64)
 
+    play_mp3("start.mp3")
     if not audio_base64 or not input_lang:
         raise HTTPException(status_code=400, detail="Audio file and input language are required")
 
     # Decode base64 audio file
-    audio_bytes = base64.b64decode(audio_base64)
+    # audio_bytes = base64.b64decode(audio_base64)
+    # audio_bytes = base64.b64decode(audio_base64.encode('utf-8'))
+    audio_bytes = audio_base64.encode('utf-8')
     
     # Save to a temporary file
     with tempfile.NamedTemporaryFile(delete=False) as temp_audio_file:
@@ -40,7 +49,9 @@ async def speech_to_text(request: SpeechToTextRequest):
     # Perform transcription
     transcription = pipeline.pipeline_att(audio_file=temp_audio_file_path, language=input_lang)
     
-    # Clean up temporary file
-    os.remove(temp_audio_file_path)
+    print("Transcription: ", transcription)
+    play_mp3("stop.mp3")
+    # # Clean up temporary file
+    # os.remove(temp_audio_file_path)
     
     return SpeechToTextResponse(text=transcription)

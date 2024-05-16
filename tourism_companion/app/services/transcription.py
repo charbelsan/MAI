@@ -6,6 +6,8 @@ from transformers import AutoModelForSeq2SeqLM
 from transformers import VitsModel, AutoTokenizer
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 
+import os
+from app.services.utils import play_mp3
 
 class WhisperInference:
     def __init__(self, model_name="base"):
@@ -38,7 +40,6 @@ class TTSInference:
         inputs = self.processor(text, return_tensors="pt")
         with torch.no_grad():
             audio_array = self.model(**inputs).waveform
-        print(audio_array)
         torchaudio.save(audio_file, audio_array, sample_rate)
         return audio_array, audio_file
     

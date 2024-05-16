@@ -5,7 +5,8 @@ models:
   gpt4_text: text-davinci-003
   whisper: base
   asr: chrisjay/fonxlsr
-  tts: facebook/mms-tts-fon
+  tts_fon: facebook/mms-tts-fon
+  tts_yor: facebook/mms-tts-yor
   gpt4_chat: gpt-4o
   nllb: facebook/nllb-200-distilled-600M
 

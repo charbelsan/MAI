@@ -8,30 +8,45 @@ from app.deps import get_db
 from app.utils.helpers import start_or_get_session, store_message
 from app.chat_memory import get_conversation_memory
 from app.rag import load_documents, create_index, rag_query
-from app.services.pipeline import Pipeline
-from langchain.llms import OpenAI
+# from app.services.pipeline import Pipeline
+from langchain.chat_models import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from app.config import Config
-#from app.chains import search_nearby, create_tourist_circuit, analyze_request
-from app.agent import search_nearby, create_tourist_circuit, analyze_request
+from app.chains import search_nearby, create_tourist_circuit, analyze_request, get_message
 import os
 import base64
 import tempfile
+
+import warnings
+warnings.filterwarnings("ignore")
+
+from langchain_core.prompts import PromptTemplate
+from app.services.utils import play_mp3, get_circuits
+from app.services.utils import setup_logging
+
+# Set up logger
+logger = setup_logging('logs/chat.log')
 
 router = APIRouter()
 
 # Load pipeline configurations
 config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config/config.yaml")
-pipeline = Pipeline(config_file=config_file)  # Initialize the pipeline once
-
-
+# pipeline = Pipeline(config_file=config_file)  # Initialize the pipeline once
 
 # Initialize OpenAI GPT-4 with the API key
 openai_api_key = os.getenv("OPENAI_API_KEY")
-gpt4_model = OpenAI(model_name="gpt-4o", openai_api_key=Config.OPENAI_API_KEY)
+gpt4_model = ChatOpenAI(model_name="gpt-4o", openai_api_key=Config.OPENAI_API_KEY, temperature=0.7)
+
+# Define the prompt template for analyzing the user's request
+template = """Question: {question}
+
+Answer: You are an AI assistant that analyzes user requests to determine the appropriate action. Based on the user's input, you should categorize the request as one of the following: 'tourist_circuit' for creating a tourist circuit, 'find_nearby' for finding nearby places, or 'other' for any other type of request. Provide a clear and concise action flag based on your analysis."""
+
+prompt = PromptTemplate.from_template(template)
+llm_analyze_request = prompt | gpt4_model
 
 # Load the RAG configuration
-use_rag = pipeline.config['features'].get('use_rag', False)
+use_rag = False #pipeline.config['features'].get('use_rag', False)
 
 # Define the chat template
 chat_template = ChatPromptTemplate.from_messages(
@@ -69,27 +84,44 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
     Returns:
         ChatResponse: The AI response and session ID.
     """
-    session_id = start_or_get_session(db, request.user_id)
-    conversation_memory = get_conversation_memory(db, session_id)
+    # session_id = start_or_get_session(db, request.user_id)
+    # conversation_memory = get_conversation_memory(db, session_id)
 
     transcription = ""
+    session_id = "1234"
     if request.text:
+        play_mp3("start.mp3")
         transcription = request.text
 
+        print("Transcription: ", transcription, type(transcription))
+        logger.info(f"Transcription: {transcription}  {type(transcription)}")
+        
         # Analyze the user's request to determine the appropriate action
-        action_flag = analyze_request(transcription, conversation_memory)
-
-        if action_flag == "tourist_circuit":
-            if not request.gps_position:
-                raise HTTPException(status_code=400, detail="GPS position is required for this request.")
-            response = create_tourist_circuit(request.gps_position, conversation_memory)
+        action_flag = llm_analyze_request.invoke(transcription).content
+        print(f"Action Flag: {action_flag}")
+        logger.info(f"Action Flag: {action_flag}")
+        
+        # # action_flag = analyze_request(transcription, conversation_memory)
+        # action_flag = analyze_request(str(transcription))
+        
+        if "tourist_circuit" in action_flag:
+            message_body = get_message()
+            logger.info(f"Message body: {message_body}")
+            path_csv = "benin_tourist_circuits.csv"
+            if not os.path.exists(path_csv):
+                path_csv = create_tourist_circuit(message_body, str(session_id))
+            response = get_circuits(path_csv, only_circuit=True, circuit_name=None)
+            play_mp3("stop.mp3")
             return {"response": response, "session_id": session_id}
 
-        elif action_flag == "find_nearby":
+        elif "find_nearby" in action_flag:
             if not request.gps_position:
                 raise HTTPException(status_code=400, detail="GPS position is required for this request.")
             place_type = "restaurants" if "restaurants" in transcription else "hotels" if "hotels" in transcription else "tourist spots"
-            response = search_nearby(request.gps_position, place_type, conversation_memory)
+            logger.info(f"Place type: {place_type}")
+            # response = search_nearby(request.gps_position, place_type, conversation_memory)
+            response = action_flag
+            play_mp3("stop.mp3")
             return {"response": response, "session_id": session_id}
     
     elif request.image:
