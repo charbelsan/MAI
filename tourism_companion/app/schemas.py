@@ -2,6 +2,8 @@ from pydantic import BaseModel, Field, validator
 from typing import Optional, Dict, List
 from datetime import datetime
 
+
+
 class ChatMessage(BaseModel):
     id: int
     session_id: str
@@ -11,6 +13,10 @@ class ChatMessage(BaseModel):
 
     class Config:
         orm_mode = True
+
+class ChatResponse(BaseModel):
+    response: str = Field(..., description="AI's response to the user's query")
+    session_id: str = Field(..., description="Session ID for the conversation")
 
 class ChatRequest(BaseModel):
     text: Optional[str] = Field(None, description="User's text input")
@@ -27,9 +33,7 @@ class ChatRequest(BaseModel):
             raise ValueError('GPS position must include latitude and longitude')
         return v
 
-class ChatResponse(BaseModel):
-    response: str = Field(..., description="AI's response to the user's query")
-    session_id: int = Field(..., description="Session ID for the conversation")
+
 
 class SpeechToTextRequest(BaseModel):
     audio: str = Field(..., description="Base64 encoded audio file")

@@ -133,13 +133,12 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
 
     
     response = main_chain(transcription , context, chat_template)
-    print (response)
+    print ("debug_response" ,response)
 
 
 
-    # Add to conversation memory and store messages
-    # conversation_memory.add_user_input(transcription)
-    # conversation_memory.add_ai_response(response)
+   # Store messages in conversation memory
+    conversation_memory.save_context({"input": transcription}, {"output": response})
     store_message(db, session_id, 'user', transcription)
     store_message(db, session_id, 'ai', response)
 
