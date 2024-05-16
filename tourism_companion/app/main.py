@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.database import engine
 from app.models import Base
-from app.routers import chat, speech_to_text, text_to_speech
+from app.routers import chat, speech_to_text, text_to_speech, history, tourist_circuit
 from app.services.utils import setup_logging
 
 from dotenv import load_dotenv
@@ -26,9 +26,10 @@ Base.metadata.create_all(bind=engine)
 
 # Include routers
 app.include_router(chat.router, prefix="/api/v1")
-#app.include_router(circuit.router, prefix="/api/v1")
+app.include_router(tourist_circuit.router, prefix="/api/v1")
 app.include_router(speech_to_text.router, prefix="/api/v1")
 app.include_router(text_to_speech.router, prefix="/api/v1")
+app.include_router(history.router, prefix="/api/v1")
 
 if __name__ == "__main__":
     import uvicorn

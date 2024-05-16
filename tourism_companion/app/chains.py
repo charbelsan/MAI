@@ -4,20 +4,21 @@ import time
 import shelve
 import logging
 import subprocess
-import pandas as pd
+#import pandas as pd
 from dotenv import load_dotenv
 # from langchain_community.llms import OpenAI
 from openai import OpenAI
 
 # from app.agent import create_nearby_agent, create_analysis_agent
-from app.agent import DispatchAgent, GPSAgent, TourismAgent
+from app.agent import DispatchAgent, GPSAgent, TourismAgent,DefaultAgent
 # from langchain_core.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferMemory
 
 # Initialize the agent chain
-dispatch_agent = DispatchAgent("gpt-4o").agent_chain
-gps_agent = GPSAgent("gpt-4o").agent_chain
-# tourism_agent = TourismAgent()
+dispatch_agent = DispatchAgent("gpt-4o")
+gps_agent = GPSAgent("gpt-4o")
+main_agent_1=DefaultAgent("gpt-4o")
+
                 
 # Get the current file path
 app_path = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +28,88 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_ASSISTANT_ID = os.getenv("OPENAI_ASSISTANT_ID")
 client = OpenAI(api_key=OPENAI_API_KEY)
+
+
+
+def main_chain(translation , context, chat_template):
+    template={"user_message": translation, "context": context}
+    main_agent_1.chain(chat_template,template )
+
+
+
+def search_nearby(gps_position, place_type, conversation_memory: ConversationBufferMemory=None):
+    """
+    Use the agent to find nearby places based on GPS position and place type.
+
+    Args:
+        gps_position (dict): Dictionary containing latitude and longitude.
+        place_type (str): Type of place to search for (e.g., restaurants, hotels).
+        conversation_memory (ConversationBufferMemory): The conversation memory to use.
+
+    Returns:
+        str: The response from the agent.
+    """
+    input_text = f"Find {place_type} near latitude {gps_position['latitude']} and longitude {gps_position['longitude']}."
+    #gps_agent.memory.chat_memory.add_user_message(input_text)
+    response = gps_agent.run(input=input_text)
+    return response
+
+def create_tourist_circuit(message_body, user_id="1234"): #, conversation_memory: ConversationBufferMemory):
+    """
+    Use the agent to create a tourist circuit based on GPS position.
+
+    Args:
+        gps_position (dict): Dictionary containing latitude and longitude.
+        conversation_memory (ConversationBufferMemory): The conversation memory to use.
+
+    Returns:
+        str: The response from the agent.
+    """
+    
+    # Check if there is already a thread_id for the user_id
+    thread_id = check_if_thread_exists(user_id)
+
+    # If a thread doesn't exist, create one and store it
+    if thread_id is None:
+        logging.info(f"Creating new thread with user_id {user_id}")
+        thread = client.beta.threads.create()
+        store_thread(user_id, thread.id)
+        thread_id = thread.id
+        
+    # Otherwise, retrieve the existing thread
+    else:
+        logging.info(f"Retrieving existing thread with user_id {user_id}")
+        thread = client.beta.threads.retrieve(thread_id)
+
+    # Add message to thread
+    message = client.beta.threads.messages.create(
+        thread_id=thread_id,
+        role="user",
+        content=message_body,
+    )
+
+    # Run the assistant and get the new message
+    new_message = run_assistant(thread)
+    
+    python_code = extract_python_code(new_message)
+    save_to_file(f"{app_path}/benin_map.py", python_code)
+    command = f"python3 {app_path}/benin_map.py"
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    return "benin_tourist_circuits.csv"
+
+def analyze_request(request_text):
+    """
+    Use the agent to analyze the user's request and determine the appropriatgit e action.
+
+    Args:
+        request_text (str): The user's request text.
+
+    Returns:
+        str: The action flag ('tourist_circuit', 'find_nearby', or 'other').
+    """
+    return dispatch_agent.chain.invoke({"input": request_text})
+
+
 
 def run_assistant(thread):
     # Retrieve the Assistant
@@ -98,47 +181,6 @@ message_body = "Make a list of places to discover for a vacation in all regions 
         # Save the map to an HTML file \
         map_benin.save('benin_tourist_circuits.html') \
         ''' "
-        
-def get_message():
-    return message_body
-                    
-# Use context manager to ensure the shelf file is closed properly
-def check_if_thread_exists(user_id):
-    with shelve.open(f"threads_db_benin") as threads_shelf:
-        return threads_shelf.get(user_id, None)
-
-def store_thread(user_id, thread_id):
-    with shelve.open(f"threads_db_benin", writeback=True) as threads_shelf:
-        threads_shelf[user_id] = thread_id
-
-def extract_python_code(gpt_response):
-    # Regular expression pattern to match Python code blocks
-    pattern = r'```python(.*?)```'
-    code_blocks = re.findall(pattern, gpt_response, re.DOTALL)
-    return '\n\n'.join(code_blocks)
-
-def save_to_file(filename, content):
-    with open(filename, 'w') as file:
-        file.write(content)
-          
-def search_nearby(gps_position, place_type, conversation_memory: ConversationBufferMemory):
-    """
-    Use the agent to find nearby places based on GPS position and place type.
-
-    Args:
-        gps_position (dict): Dictionary containing latitude and longitude.
-        place_type (str): Type of place to search for (e.g., restaurants, hotels).
-        conversation_memory (ConversationBufferMemory): The conversation memory to use.
-
-    Returns:
-        str: The response from the agent.
-    """
-    input_text = f"Find {place_type} near latitude {gps_position['latitude']} and longitude {gps_position['longitude']}."
-    gps_agent.memory.chat_memory.add_user_message(input_text)
-    response = gps_agent.run(input=input_text)
-    # agent = create_nearby_agent(conversation_memory)  # Use the provided conversation memory
-    # response = agent.run(input_text)
-    return response
 
 def create_tourist_circuit(message_body=message_body, user_id="1234"): #, conversation_memory: ConversationBufferMemory):
     """
@@ -184,23 +226,42 @@ def create_tourist_circuit(message_body=message_body, user_id="1234"): #, conver
     return "benin_tourist_circuits.csv"
 
 def analyze_request(request_text):
+    print(request_text)
     """
     Use the agent to analyze the user's request and determine the appropriatgit e action.
 
     Args:
         request_text (str): The user's request text.
-        conversation_memory (ConversationBufferMemory): The conversation memory to use.
 
     Returns:
         str: The action flag ('tourist_circuit', 'find_nearby', or 'other').
     """
-    input_text = f"Analyze the following request: {request_text}"
-    print(input_text)
-    dispatch_agent.memory.chat_memory.add_user_message(input_text)
-    response = dispatch_agent.run(input=input_text)
-    # agent = create_analysis_agent(conversation_memory)  # Use the provided conversation memory
-    # response = agent.run(input_text)
-    return response
+    return dispatch_agent.chain.invoke({"input": request_text})
+
+
+        
+def get_message():
+    return message_body
+                    
+# Use context manager to ensure the shelf file is closed properly
+def check_if_thread_exists(user_id):
+    with shelve.open(f"threads_db_benin") as threads_shelf:
+        return threads_shelf.get(user_id, None)
+
+def store_thread(user_id, thread_id):
+    with shelve.open(f"threads_db_benin", writeback=True) as threads_shelf:
+        threads_shelf[user_id] = thread_id
+
+def extract_python_code(gpt_response):
+    # Regular expression pattern to match Python code blocks
+    pattern = r'```python(.*?)```'
+    code_blocks = re.findall(pattern, gpt_response, re.DOTALL)
+    return '\n\n'.join(code_blocks)
+
+def save_to_file(filename, content):
+    with open(filename, 'w') as file:
+        file.write(content)
+    
 
 if __name__ == '__main__':
     

@@ -1,5 +1,16 @@
 from pydantic import BaseModel, Field, validator
-from typing import Optional, Dict
+from typing import Optional, Dict, List
+from datetime import datetime
+
+class ChatMessage(BaseModel):
+    id: int
+    session_id: str
+    sender: str
+    message: str
+    timestamp: datetime
+
+    class Config:
+        orm_mode = True
 
 class ChatRequest(BaseModel):
     text: Optional[str] = Field(None, description="User's text input")
@@ -34,3 +45,37 @@ class TextToSpeechRequest(BaseModel):
 
 class TextToSpeechResponse(BaseModel):
     audio: str = Field(..., description="Base64 encoded audio file")
+
+class ChatHistoryResponse(BaseModel):
+    messages: List[ChatMessage]
+
+
+class TouristPointBase(BaseModel):
+    name: str
+    description: Optional[str] = None
+    visited: bool = False
+
+    class Config:
+        orm_mode = True
+
+class TouristPointCreate(TouristPointBase):
+    pass
+
+class TouristPoint(TouristPointBase):
+    id: int
+    circuit_id: int
+
+class TouristCircuitBase(BaseModel):
+    user_id: int
+    session_id: str
+    validated: bool = False
+
+    class Config:
+        orm_mode = True
+
+class TouristCircuitCreate(TouristCircuitBase):
+    pass
+
+class TouristCircuit(TouristCircuitBase):
+    id: int
+    points: List[TouristPoint] = []

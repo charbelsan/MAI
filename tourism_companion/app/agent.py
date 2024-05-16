@@ -11,7 +11,7 @@ from langchain.agents import initialize_agent, AgentType
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMMathChain, RetrievalQA
 from langchain.memory import ConversationTokenBufferMemory, ReadOnlySharedMemory
-from app.tool import search_tool, wiki_tool
+from app.tool import search_tool
 from app.tool import Weather_tool, Wolfram_tool
 
 CONTEXT = """
@@ -63,7 +63,7 @@ class TourismAgent:
                                             prompt=prompt_template_tourist_circuit)
         self.agent_chain.memory.chat_memory.add_ai_message(CONTEXT)
 
-tools = [
+    tools = [
         search_tool
     ]
 class GPSAgent:
@@ -93,9 +93,13 @@ class DispatchAgent:
         self.description = "You are an AI assistant specializing in helping users find nearby places based on their GPS location. You are provided with the user's location (latitude and longitude) and the type of place they are looking for (e.g., restaurants, hotels, tourist attractions). Use this information to provide accurate and relevant suggestions for nearby places."
         
         # Define the memory and the LLM engine
-        self.llm = ChatOpenAI(model_name=model_name, temperature=0.2, max_tokens=150, verbose=True)
+        self.llm = ChatOpenAI(model_name=model_name, temperature=0.5, max_tokens=150, verbose=True)
         self.memory = ConversationTokenBufferMemory(llm=self.llm, max_token_limit=1500, memory_key="chat_history", return_messages=True)
         self.readonlymemory = ReadOnlySharedMemory(memory=self.memory)
+    
+    def chain(chat_template, template):
+        chain= chat_template|self.llm|parser
+        return chain.invoke(template)
         
         # Initialize the agent chain
         self.agent_chain = initialize_agent([search_tool], self.llm, 
