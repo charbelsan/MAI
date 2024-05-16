@@ -6,12 +6,19 @@ import logging
 import subprocess
 import pandas as pd
 from dotenv import load_dotenv
-from langchain_community.llms import OpenAI
+# from langchain_community.llms import OpenAI
+from openai import OpenAI
 
-from app.agent import create_nearby_agent, create_analysis_agent
+# from app.agent import create_nearby_agent, create_analysis_agent
+from app.agent import DispatchAgent, GPSAgent, TourismAgent
 # from langchain_core.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferMemory
 
+# Initialize the agent chain
+dispatch_agent = DispatchAgent("gpt-4o").agent_chain
+gps_agent = GPSAgent("gpt-4o").agent_chain
+# tourism_agent = TourismAgent()
+                
 # Get the current file path
 app_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -24,7 +31,7 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 def run_assistant(thread):
     # Retrieve the Assistant
     logging.info(f"Retrieving assistant : OPENAI_ASSISTANT_ID")
-    assistant = client.beta.assistants.retrieve(os.getenv(f"OPENAI_ASSISTANT_ID"))
+    assistant = client.beta.assistants.retrieve("asst_TFxNTT43nimozOZllIsEQV6X")
 
     # Run the assistant
     run = client.beta.threads.runs.create(
@@ -127,8 +134,10 @@ def search_nearby(gps_position, place_type, conversation_memory: ConversationBuf
         str: The response from the agent.
     """
     input_text = f"Find {place_type} near latitude {gps_position['latitude']} and longitude {gps_position['longitude']}."
-    agent = create_nearby_agent(conversation_memory)  # Use the provided conversation memory
-    response = agent.run(input_text)
+    gps_agent.memory.chat_memory.add_user_message(input_text)
+    response = gps_agent.run(input=input_text)
+    # agent = create_nearby_agent(conversation_memory)  # Use the provided conversation memory
+    # response = agent.run(input_text)
     return response
 
 def create_tourist_circuit(message_body=message_body, user_id="1234"): #, conversation_memory: ConversationBufferMemory):
@@ -172,10 +181,9 @@ def create_tourist_circuit(message_body=message_body, user_id="1234"): #, conver
     save_to_file(f"{app_path}/benin_map.py", python_code)
     command = f"python3 {app_path}/benin_map.py"
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    return new_message
-    
+    return "benin_tourist_circuits.csv"
 
-def analyze_request(request_text, conversation_memory: ConversationBufferMemory):
+def analyze_request(request_text):
     """
     Use the agent to analyze the user's request and determine the appropriatgit e action.
 
@@ -187,8 +195,11 @@ def analyze_request(request_text, conversation_memory: ConversationBufferMemory)
         str: The action flag ('tourist_circuit', 'find_nearby', or 'other').
     """
     input_text = f"Analyze the following request: {request_text}"
-    agent = create_analysis_agent(conversation_memory)  # Use the provided conversation memory
-    response = agent.run(input_text)
+    print(input_text)
+    dispatch_agent.memory.chat_memory.add_user_message(input_text)
+    response = dispatch_agent.run(input=input_text)
+    # agent = create_analysis_agent(conversation_memory)  # Use the provided conversation memory
+    # response = agent.run(input_text)
     return response
 
 if __name__ == '__main__':

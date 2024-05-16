@@ -6,6 +6,8 @@ from transformers import AutoModelForSeq2SeqLM
 from transformers import VitsModel, AutoTokenizer
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 
+import os
+from app.services.utils import play_mp3
 
 class WhisperInference:
     def __init__(self, model_name="base"):
